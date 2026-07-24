@@ -10,11 +10,32 @@ mixins.highlight = {
         sleep(ms) {
             return new Promise((resolve) => setTimeout(resolve, ms));
         },
+        /**
+         * 从 class 列表中提取语言名称
+         * @param {DOMTokenList} classList - 元素的 class 列表
+         * @returns {string} 提取到的语言名称，默认为 plaintext
+         */
+        extractLanguage(classList) {
+            for (let cls of classList) {
+                if (cls.startsWith("language-")) {
+                    return cls.replace("language-", "");
+                }
+                if (cls.startsWith("lang-")) {
+                    return cls.replace("lang-", "");
+                }
+            }
+            return "plaintext";
+        },
+        /**
+         * 对页面中所有代码块进行语法高亮处理
+         * 包括：高亮代码、添加语言标签、添加复制按钮、添加行号
+         */
         highlight() {
             let codes = document.querySelectorAll("pre");
             for (let i of codes) {
-                let code = i.textContent;
-                let language = [...i.classList, ...i.firstChild.classList][0] || "plaintext";
+                let codeEl = i.querySelector("code");
+                let code = codeEl ? codeEl.textContent : i.textContent;
+                let language = this.extractLanguage(codeEl ? codeEl.classList : i.classList);
                 let highlighted;
                 try {
                     highlighted = hljs.highlight(code, { language }).value;

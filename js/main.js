@@ -8,6 +8,7 @@ const app = Vue.createApp({
             menuColor: false,
             scrollTop: 0,
             renderers: [],
+            activeYear: null,
         };
     },
     created() {
@@ -37,6 +38,13 @@ const app = Vue.createApp({
                 else wrap.style.top = "-80px";
             }
             this.scrollTop = newScrollTop;
+        },
+        /**
+         * 切换归档页面的年份显示状态
+         * @param {number} year - 要切换的年份
+         */
+        toggleYear(year) {
+            this.activeYear = this.activeYear === year ? null : year;
         },
     },
 });

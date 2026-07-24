@@ -973,3 +973,119 @@ ol li {
         padding-left: 20px;
     }
 }
+
+#archives .year-nav {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-bottom: 30px;
+    gap: 10px;
+}
+
+#archives .year-nav .year-btn {
+    background: transparent;
+    border: 1px solid #d9d9d9;
+    border-radius: 20px;
+    color: #5c6b72;
+    cursor: pointer;
+    padding: 8px 16px;
+    transition: all 0.25s;
+    font-size: 14px;
+}
+
+#archives .year-nav .year-btn:hover {
+    border-color: #66afef;
+    color: #66afef;
+}
+
+#archives .year-nav .year-btn.active {
+    background: #66afef;
+    border-color: #66afef;
+    color: #fff;
+}
+
+#archives .year-group {
+    margin-bottom: 30px;
+}
+
+#archives .year-group.collapsed .month-group {
+    display: none;
+}
+
+#archives .year-header {
+    align-items: center;
+    cursor: pointer;
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+    padding: 10px 0;
+    transition: all 0.25s;
+}
+
+#archives .year-header:hover {
+    padding-left: 5px;
+}
+
+#archives .year-icon {
+    color: #66afef;
+    font-size: 14px;
+    transition: transform 0.25s;
+}
+
+#archives .year-group:not(.collapsed) .year-icon {
+    transform: rotate(90deg);
+}
+
+#archives .year-header h2 {
+    color: #2f4154;
+    font-size: 24px;
+    margin: 0;
+}
+
+#archives .year-count {
+    color: #999;
+    font-size: 14px;
+}
+
+#archives .month-group {
+    margin-left: 30px;
+    margin-bottom: 20px;
+}
+
+#archives .month-header {
+    align-items: center;
+    display: flex;
+    gap: 10px;
+    margin-bottom: 15px;
+    padding-left: 10px;
+    border-left: 3px solid #66afef;
+}
+
+#archives .month-header h3 {
+    color: #5c6b72;
+    font-size: 18px;
+    margin: 0;
+}
+
+#archives .month-count {
+    color: #bbb;
+    font-size: 12px;
+    background: #f5f5f5;
+    padding: 2px 8px;
+    border-radius: 10px;
+}
+
+#archives .month-posts {
+    margin-left: 10px;
+}
+
+#archives .no-posts {
+    text-align: center;
+    padding: 60px 0;
+    color: #999;
+}
+
+#archives .no-posts i {
+    margin-bottom: 15px;
+    opacity: 0.5;
+}
