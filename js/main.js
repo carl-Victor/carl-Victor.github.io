@@ -9,9 +9,11 @@ const app = Vue.createApp({
             scrollTop: 0,
             renderers: [],
             activeYear: null,
+            themeMode: "auto",
         };
     },
     created() {
+        this.initTheme();
         window.addEventListener("load", () => {
             this.loading = false;
         });
@@ -45,6 +47,34 @@ const app = Vue.createApp({
          */
         toggleYear(year) {
             this.activeYear = this.activeYear === year ? null : year;
+        },
+        /**
+         * 初始化主题模式，从 localStorage 读取或使用默认值
+         */
+        initTheme() {
+            const savedTheme = localStorage.getItem("theme-mode");
+            if (savedTheme && ["light", "dark", "auto"].includes(savedTheme)) {
+                this.themeMode = savedTheme;
+            }
+            this.applyTheme();
+        },
+        /**
+         * 切换主题模式：auto -> light -> dark -> auto
+         */
+        toggleTheme() {
+            const modes = ["auto", "light", "dark"];
+            const currentIndex = modes.indexOf(this.themeMode);
+            this.themeMode = modes[(currentIndex + 1) % modes.length];
+            localStorage.setItem("theme-mode", this.themeMode);
+            this.applyTheme();
+        },
+        /**
+         * 应用主题样式到 document.documentElement
+         */
+        applyTheme() {
+            const root = document.documentElement;
+            root.classList.remove("theme-light", "theme-dark", "theme-auto");
+            root.classList.add(`theme-${this.themeMode}`);
         },
     },
 });

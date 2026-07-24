@@ -5,8 +5,8 @@
     <meta charset="utf-8" />
     <title>CVblog</title>
     <meta name="author" content="Carl Victor" />
-    <meta name="description" content="" />
-    <meta name="keywords" content="" />
+    <meta name="description" content="CV的博客, 用于记录个人学习和工作过程中遇到的问题和解决方法, 以及个人的思考和总结. 基于Hexo框架和Particlex主题, 布署在GitHub Pages." />
+    <meta name="keywords" content="CV, 博客, 学习, 工作, 问题, 解决, 思考, 总结" />
     <meta
         name="viewport"
         content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"
@@ -151,6 +151,12 @@
     <div id="menu-curtain" @click="showMenuItems = !showMenuItems" v-show="showMenuItems"></div>
 </transition>
 
+<div class="theme-toggle-float" @click="toggleTheme" title="切换主题">
+    <i class="fa-solid fa-moon fa-fw" v-if="themeMode === 'dark'"></i>
+    <i class="fa-solid fa-sun fa-fw" v-if="themeMode === 'light'"></i>
+    <i class="fa-solid fa-circle-half-stroke fa-fw" v-if="themeMode === 'auto'"></i>
+</div>
+
         <div id="main" :class="loading ? 'into-enter-from': 'into-enter-active'">
             <div id="home-head">
     <div
@@ -166,8 +172,8 @@
         <span class="info">
             <div class="wrap">
                 <h1>CVblog</h1>
-                <h3></h3>
-                <h5></h5>
+                <h3>CV的个人博客</h3>
+                <h5>CV的博客, 用于记录个人学习和工作过程中遇到的问题和解决方法, 以及个人的思考和总结. 基于Hexo框架和Particlex主题, 布署在GitHub Pages.</h5>
             </div>
         </span>
     </div>
@@ -185,6 +191,15 @@
         <h2 class="post-title">Hello World</h2>
     </a>
     <div class="category-and-date">
+        
+        <span class="category">
+            <a href="/categories/%E6%95%99%E7%A8%8B/">
+                <span class="icon">
+                    <i class="fa-solid fa-bookmark fa-fw"></i>
+                </span>
+                教程
+            </a>
+        </span>
         
         <span class="date">
             <span class="icon">
@@ -217,7 +232,21 @@
     </div>
     <div class="post-tags">
         
+        <span class="icon">
+            <i class="fa-solid fa-tags fa-fw"></i>
+        </span>
         
+        
+        
+        <span class="tag">
+            
+            <a href="/tags/Hexo/" style="color: #00bcd4">Hexo</a>
+        </span>
+        
+        <span class="tag">
+            
+            <a href="/tags/%E5%85%A5%E9%97%A8/" style="color: #03a9f4">入门</a>
+        </span>
         
     </div>
     <a href="/2026/07/24/hello-world/" class="go-post">阅读全文</a>

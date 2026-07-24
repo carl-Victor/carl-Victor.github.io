@@ -5,8 +5,8 @@
     <meta charset="utf-8" />
     <title>about | CVblog</title>
     <meta name="author" content="Carl Victor" />
-    <meta name="description" content="" />
-    <meta name="keywords" content="" />
+    <meta name="description" content="CV的博客, 用于记录个人学习和工作过程中遇到的问题和解决方法, 以及个人的思考和总结. 基于Hexo框架和Particlex主题, 布署在GitHub Pages." />
+    <meta name="keywords" content="CV, 博客, 学习, 工作, 问题, 解决, 思考, 总结" />
     <meta
         name="viewport"
         content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"
@@ -152,6 +152,12 @@
 <transition name="fade">
     <div id="menu-curtain" @click="showMenuItems = !showMenuItems" v-show="showMenuItems"></div>
 </transition>
+
+<div class="theme-toggle-float" @click="toggleTheme" title="切换主题">
+    <i class="fa-solid fa-moon fa-fw" v-if="themeMode === 'dark'"></i>
+    <i class="fa-solid fa-sun fa-fw" v-if="themeMode === 'light'"></i>
+    <i class="fa-solid fa-circle-half-stroke fa-fw" v-if="themeMode === 'auto'"></i>
+</div>
 
         <div id="main" :class="loading ? 'into-enter-from': 'into-enter-active'">
             <div class="article">
