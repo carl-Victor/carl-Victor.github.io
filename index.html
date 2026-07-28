@@ -15,18 +15,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
-    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
-  
   <meta name="theme-color" content="#A56E62c4">
   <meta name="author" content="Carl Victor">
   <meta name="keywords" content="CV, 博客, 学习, 工作, 问题, 解决, 思考, 总结">
   
-    <meta name="description" content="记录和分享个人学习和工作过程中遇到的问题和解决方法">
+    <meta name="description" content="Ciallo～(∠・ω&lt; )⌒★">
 <meta property="og:type" content="website">
 <meta property="og:title" content="CVblog">
 <meta property="og:url" content="https://blog.carlvictor.cn/index.html">
 <meta property="og:site_name" content="CVblog">
-<meta property="og:description" content="记录和分享个人学习和工作过程中遇到的问题和解决方法">
+<meta property="og:description" content="Ciallo～(∠・ω&lt; )⌒★">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:author" content="Carl Victor">
 <meta property="article:tag" content="CV, 博客, 学习, 工作, 问题, 解决, 思考, 总结">
@@ -79,7 +77,27 @@
 
 
   
-<meta name="generator" content="Hexo 8.1.2"></head>
+<!-- hexo injector head_end start -->
+<style>
+  .home-banner-description {
+    margin-top: 1rem;
+    font-size: 1.1rem;
+    color: rgba(255, 255, 255, 0.85);
+    letter-spacing: 0.05em;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.8s ease-out 0.3s, transform 0.8s ease-out 0.3s;
+  }
+  .home-banner-description.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  [data-user-color-scheme="dark"] .home-banner-description {
+    color: rgba(208, 208, 208, 0.85);
+  }
+</style>
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 8.1.2"></head>
 
 
 <body>
@@ -378,6 +396,82 @@
   <div class="row mx-auto index-card">
     
     
+      <div class="col-12 col-md-4 m-auto index-img">
+        <a href="/posts/f3a7c2d9.html" target="_self">
+          <img src="/img/index_img/hexo.webp" srcset="/img/loading.gif" lazyload alt="Hexo注入代码实现首页自定义">
+        </a>
+      </div>
+    
+    <article class="col-12 col-md-8 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/posts/f3a7c2d9.html" target="_self">
+          Hexo注入代码实现首页自定义
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt " href="/posts/f3a7c2d9.html" target="_self">
+        <div>
+          如何通过注入代码实现 Fluid主题 首页 banner 的 subtitle（副标题）下方添加一行站点描述（description）
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2026-07-28 14:30" pubdate>
+              2026-07-28
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Hexo%E5%8D%9A%E5%AE%A2/" class="category-chain-item">Hexo博客</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/Hexo%E5%8D%9A%E5%AE%A2/%E8%BF%9B%E9%98%B6/" class="category-chain-item">进阶</a>
+  
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/Hexo/">#Hexo</a>
+            
+              <a href="/tags/Fluid%E4%B8%BB%E9%A2%98/">#Fluid主题</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
     <article class="col-12 col-md-12 mx-auto index-info">
       <h2 class="index-header">
         
@@ -561,5 +655,29 @@
   <noscript>
     <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
   </noscript>
-</body>
+<!-- hexo injector body_end start -->
+<script>
+  (function() {
+    var subtitle = document.getElementById('subtitle');
+    if (!subtitle) return;
+
+    var description = 'Ciallo～(∠・ω&lt; )⌒★';
+    if (!description) return;
+
+    var descDiv = document.createElement('div');
+    descDiv.className = 'home-banner-description';
+    descDiv.textContent = description;
+
+    // 查找打字机游标元素，确保 description 插入在游标之后
+    var cursor = subtitle.parentNode.querySelector('.typed-cursor');
+    var insertAfter = cursor || subtitle;
+    insertAfter.parentNode.insertBefore(descDiv, insertAfter.nextSibling);
+
+    // 强制回流后添加 visible class 触发过渡动画
+    requestAnimationFrame(function() {
+      descDiv.classList.add('is-visible');
+    });
+  })();
+</script>
+<!-- hexo injector body_end end --></body>
 </html>
