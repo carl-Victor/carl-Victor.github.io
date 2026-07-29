@@ -19,22 +19,22 @@
   <meta name="author" content="Carl Victor">
   <meta name="keywords" content="CV, 博客, 学习, 工作, 问题, 解决, 思考, 总结">
   
-    <meta name="description" content="说明：不要一次性全部安装，按需选用；很多主题（Butterfly、NexT、Redefine）自带部分功能，避免重复插件冲突。  一、基础必备（优先安装，几乎所有博客通用）1. hexo-deployer-git（官方）1npm i hexo-deployer-git --save 作用：一键部署 hexo d 推送静态文件到 GitHub&#x2F;Gitee Pages。✅ 必装。 2. h">
+    <meta name="description" content="先给核心结论单纯用来管理多个 Node.js 版本：选 fnm，不要用 Homebrew 直接管理 node。Homebrew 是系统包管理器，天生不适合做多版本 Node 切换；fnm 是专门为 Node 版本切换设计的工具。 一、先分清二者定位（最关键）1. Homebrew（brew）brew &#x3D; macOS&#x2F;Linux 系统软件包管理器  可以安装 node、node@">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hexo精选插件">
-<meta property="og:url" content="https://blog.carlvictor.cn/posts/2c151f31.html">
+<meta property="og:title" content="fnm VS brew 哪个更适合用来进行node版本管理">
+<meta property="og:url" content="https://blog.carlvictor.cn/posts/7c6f499b.html">
 <meta property="og:site_name" content="CVblog">
-<meta property="og:description" content="说明：不要一次性全部安装，按需选用；很多主题（Butterfly、NexT、Redefine）自带部分功能，避免重复插件冲突。  一、基础必备（优先安装，几乎所有博客通用）1. hexo-deployer-git（官方）1npm i hexo-deployer-git --save 作用：一键部署 hexo d 推送静态文件到 GitHub&#x2F;Gitee Pages。✅ 必装。 2. h">
+<meta property="og:description" content="先给核心结论单纯用来管理多个 Node.js 版本：选 fnm，不要用 Homebrew 直接管理 node。Homebrew 是系统包管理器，天生不适合做多版本 Node 切换；fnm 是专门为 Node 版本切换设计的工具。 一、先分清二者定位（最关键）1. Homebrew（brew）brew &#x3D; macOS&#x2F;Linux 系统软件包管理器  可以安装 node、node@">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2026-07-26T16:00:00.000Z">
-<meta property="article:modified_time" content="2026-07-27T10:03:18.382Z">
+<meta property="article:published_time" content="2026-07-29T10:07:56.000Z">
+<meta property="article:modified_time" content="2026-07-29T10:15:43.859Z">
 <meta property="article:author" content="Carl Victor">
-<meta property="article:tag" content="CV, 博客, 学习, 工作, 问题, 解决, 思考, 总结">
+<meta property="article:tag" content="AI随记">
 <meta name="twitter:card" content="summary_large_image">
   
   
   
-  <title>Hexo精选插件 - CVblog</title>
+  <title>fnm VS brew 哪个更适合用来进行node版本管理 - CVblog</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -277,7 +277,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle">Hexo精选插件</span>
+            <span id="subtitle">fnm VS brew 哪个更适合用来进行node版本管理</span>
           
         </div>
 
@@ -288,8 +288,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2026-07-27 00:00" pubdate>
-          2026年7月27日 凌晨
+        <time datetime="2026-07-29 18:07" pubdate>
+          2026年7月29日 晚上
         </time>
       </span>
     
@@ -300,7 +300,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          2.2k 字
+          1.6k 字
         
       </span>
     
@@ -311,7 +311,7 @@
         
         
         
-          19 分钟
+          14 分钟
         
       </span>
     
@@ -343,172 +343,6 @@
   <div class="row nomargin-x">
     <div class="side-col d-none d-lg-block col-lg-2">
       
-  <aside class="sidebar category-bar" style="margin-right: -1rem">
-    
-
-
-
-
-
-<div class="category-list">
-  
-  
-    
-    
-    
-    <div class="category row nomargin-x">
-      <a class="category-item 
-          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="Hexo博客"
-        id="heading-a15d0a42cce69e166eb81017d78818c5" role="tab" data-toggle="collapse" href="#collapse-a15d0a42cce69e166eb81017d78818c5"
-        aria-expanded="true"
-      >
-        Hexo博客
-        <span class="list-group-count">(4)</span>
-        <i class="iconfont icon-arrowright"></i>
-      </a>
-      
-      <div class="category-collapse collapse show" id="collapse-a15d0a42cce69e166eb81017d78818c5"
-           role="tabpanel" aria-labelledby="heading-a15d0a42cce69e166eb81017d78818c5">
-        
-        
-          
-          
-  <div class="category-post-list">
-    
-    
-      
-      
-        <a href="/posts/668c821b.html" title="Hexo从入门到入土"
-           class="list-group-item list-group-item-action
-           ">
-          <span class="category-post">Hexo从入门到入土</span>
-        </a>
-      
-    
-  </div>
-
-          
-  
-    
-    
-    
-    <div class="category-sub row nomargin-x">
-      <a class="category-subitem collapsed
-          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="安装部署"
-        id="heading-039d392cea6b20609a2aa94015441bad" role="tab" data-toggle="collapse" href="#collapse-039d392cea6b20609a2aa94015441bad"
-        aria-expanded="false"
-      >
-        安装部署
-        <span class="list-group-count">(1)</span>
-        <i class="iconfont icon-arrowright"></i>
-      </a>
-      
-      <div class="category-collapse collapse " id="collapse-039d392cea6b20609a2aa94015441bad"
-           role="tabpanel" aria-labelledby="heading-039d392cea6b20609a2aa94015441bad">
-        
-        
-          
-  <div class="category-post-list">
-    
-    
-      
-      
-        <a href="/posts/dd7e20f7.html" title="Mac本地部署Hexo"
-           class="list-group-item list-group-item-action
-           ">
-          <span class="category-post">Mac本地部署Hexo</span>
-        </a>
-      
-    
-  </div>
-
-        
-      </div>
-    </div>
-  
-    
-    
-    
-    <div class="category-sub row nomargin-x">
-      <a class="category-subitem 
-          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="插件"
-        id="heading-236b0cdd2e18418fd17d3cdfcace239e" role="tab" data-toggle="collapse" href="#collapse-236b0cdd2e18418fd17d3cdfcace239e"
-        aria-expanded="true"
-      >
-        插件
-        <span class="list-group-count">(1)</span>
-        <i class="iconfont icon-arrowright"></i>
-      </a>
-      
-      <div class="category-collapse collapse show" id="collapse-236b0cdd2e18418fd17d3cdfcace239e"
-           role="tabpanel" aria-labelledby="heading-236b0cdd2e18418fd17d3cdfcace239e">
-        
-        
-          
-  <div class="category-post-list">
-    
-    
-      
-      
-        <a href="/posts/2c151f31.html" title="Hexo精选插件"
-           class="list-group-item list-group-item-action
-           active">
-          <span class="category-post">Hexo精选插件</span>
-        </a>
-      
-    
-  </div>
-
-        
-      </div>
-    </div>
-  
-    
-    
-    
-    <div class="category-sub row nomargin-x">
-      <a class="category-subitem collapsed
-          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="进阶"
-        id="heading-fa11f8c07c1629d5f0ab1cfecdf1f686" role="tab" data-toggle="collapse" href="#collapse-fa11f8c07c1629d5f0ab1cfecdf1f686"
-        aria-expanded="false"
-      >
-        进阶
-        <span class="list-group-count">(1)</span>
-        <i class="iconfont icon-arrowright"></i>
-      </a>
-      
-      <div class="category-collapse collapse " id="collapse-fa11f8c07c1629d5f0ab1cfecdf1f686"
-           role="tabpanel" aria-labelledby="heading-fa11f8c07c1629d5f0ab1cfecdf1f686">
-        
-        
-          
-  <div class="category-post-list">
-    
-    
-      
-      
-        <a href="/posts/f3a7c2d9.html" title="Hexo注入代码实现Fluid主题首页自定义"
-           class="list-group-item list-group-item-action
-           ">
-          <span class="category-post">Hexo注入代码实现Fluid主题首页自定义</span>
-        </a>
-      
-    
-  </div>
-
-        
-      </div>
-    </div>
-  
-        
-      </div>
-    </div>
-  
-</div>
-
-
-  </aside>
-
 
     </div>
 
@@ -516,79 +350,90 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">Hexo精选插件</h1>
+            <h1 id="seo-header">fnm VS brew 哪个更适合用来进行node版本管理</h1>
             
             
               <div class="markdown-body">
                 
-                <blockquote>
-<p>说明：<strong>不要一次性全部安装</strong>，按需选用；很多主题（Butterfly、NexT、Redefine）自带部分功能，避免重复插件冲突。</p>
-</blockquote>
-<h1 id="一、基础必备（优先安装，几乎所有博客通用）"><a href="#一、基础必备（优先安装，几乎所有博客通用）" class="headerlink" title="一、基础必备（优先安装，几乎所有博客通用）"></a>一、基础必备（优先安装，几乎所有博客通用）</h1><h2 id="1-hexo-deployer-git（官方）"><a href="#1-hexo-deployer-git（官方）" class="headerlink" title="1. hexo-deployer-git（官方）"></a>1. hexo-deployer-git（官方）</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">npm i hexo-deployer-git --save<br></code></pre></td></tr></table></figure>
-<p>作用：一键部署 <code>hexo d</code> 推送静态文件到 GitHub&#x2F;Gitee Pages。<br>✅ 必装。</p>
-<h2 id="2-hexo-abbrlink"><a href="#2-hexo-abbrlink" class="headerlink" title="2. hexo-abbrlink"></a>2. hexo-abbrlink</h2><p>Hexo 默认链接两种痛点：<br>用日期路径：&#x2F;2026&#x2F;07&#x2F;27&#x2F;mac-install-brew&#x2F;，换标题、改时间链接就变；<br>想在文章内互相引用，每次手动复制完整 URL，要翻地址，非常麻烦。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">npm i hexo-abbrlink --save<br></code></pre></td></tr></table></figure>
-<p>作用：生成<strong>固定短链接</strong>，解决中文标题url、改文章标题导致链接失效、死链问题。<br>推荐配置</p>
-<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs yaml"><span class="hljs-attr">permalink:</span> <span class="hljs-string">posts/:abbrlink.html</span><br><span class="hljs-attr">abbrlink:</span><br>  <span class="hljs-attr">alg:</span> <span class="hljs-string">crc32</span><br>  <span class="hljs-attr">rep:</span> <span class="hljs-string">hex</span><br></code></pre></td></tr></table></figure>
-
-<h2 id="3-hexo-generator-sitemap"><a href="#3-hexo-generator-sitemap" class="headerlink" title="3. hexo-generator-sitemap"></a>3. hexo-generator-sitemap</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">npm i hexo-generator-sitemap --save<br></code></pre></td></tr></table></figure>
-<p>生成 <code>sitemap.xml</code>，搜索引擎收录必备。</p>
-<h2 id="4-hexo-generator-feed"><a href="#4-hexo-generator-feed" class="headerlink" title="4. hexo-generator-feed"></a>4. hexo-generator-feed</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">npm i hexo-generator-feed --save<br></code></pre></td></tr></table></figure>
-<p>生成 RSS 订阅源，方便读者订阅博客。</p>
-<h1 id="二、Markdown渲染-写作增强（写技术博客强烈推荐）"><a href="#二、Markdown渲染-写作增强（写技术博客强烈推荐）" class="headerlink" title="二、Markdown渲染 &amp; 写作增强（写技术博客强烈推荐）"></a>二、Markdown渲染 &amp; 写作增强（写技术博客强烈推荐）</h1><h2 id="hexo-renderer-markdown-it（替换默认渲染器）"><a href="#hexo-renderer-markdown-it（替换默认渲染器）" class="headerlink" title="hexo-renderer-markdown-it（替换默认渲染器）"></a>hexo-renderer-markdown-it（替换默认渲染器）</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">npm uninstall hexo-renderer-marked --save<br>npm i hexo-renderer-markdown-it --save<br></code></pre></td></tr></table></figure>
-<p>优势：拓展Markdown语法：任务列表、脚注、emoji、表格、图片尺寸；兼容性更好。<br>可搭配插件：markdown-it-footnote、markdown-it-task-lists。</p>
+                <h1 id="先给核心结论"><a href="#先给核心结论" class="headerlink" title="先给核心结论"></a>先给核心结论</h1><p><strong>单纯用来管理多个 Node.js 版本：选 fnm，不要用 Homebrew 直接管理 node。</strong><br>Homebrew 是系统包管理器，<strong>天生不适合做多版本 Node 切换</strong>；fnm 是专门为 Node 版本切换设计的工具。</p>
+<h2 id="一、先分清二者定位（最关键）"><a href="#一、先分清二者定位（最关键）" class="headerlink" title="一、先分清二者定位（最关键）"></a>一、先分清二者定位（最关键）</h2><h3 id="1-Homebrew（brew）"><a href="#1-Homebrew（brew）" class="headerlink" title="1. Homebrew（brew）"></a>1. Homebrew（brew）</h3><p>brew &#x3D; macOS&#x2F;Linux <strong>系统软件包管理器</strong></p>
+<ul>
+<li>可以安装 <code>node</code>、<code>node@18</code>、<code>node@20</code></li>
+<li>❌ <strong>硬伤</strong>：无法同时激活多个版本，切换极其麻烦</li>
+<li>切换方式：手动改 PATH、来回安装卸载、容易产生冲突</li>
+<li>brew update 会强制升级软件，一不小心 Node 被偷偷更新，老项目直接炸</li>
+<li>不支持项目目录<strong>自动切换 Node 版本</strong>（<code>.nvmrc</code> &#x2F; <code>.node-version</code>）</li>
+</ul>
 <blockquote>
-<p>⚠️ 冲突提醒：更换渲染器后，部分旧标签插件可能失效。</p>
+<p>常见坑：同时装 node@18 &#x2F; node@20，需要手动写 <code>export PATH=&quot;/opt/homebrew/opt/node@20/bin:$PATH&quot;</code> 来回切换；一旦环境变量写错，版本错乱。</p>
 </blockquote>
-<h2 id="hexo-auto-toc"><a href="#hexo-auto-toc" class="headerlink" title="hexo-auto-toc"></a>hexo-auto-toc</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">npm i hexo-auto-toc<br></code></pre></td></tr></table></figure>
-<p>自动生成文章目录，支持折叠，适配移动端；不想用主题自带toc可以选这个。</p>
-<h1 id="三、站点搜索功能"><a href="#三、站点搜索功能" class="headerlink" title="三、站点搜索功能"></a>三、站点搜索功能</h1><h2 id="hexo-generator-searchdb（最主流本地搜索）"><a href="#hexo-generator-searchdb（最主流本地搜索）" class="headerlink" title="hexo-generator-searchdb（最主流本地搜索）"></a>hexo-generator-searchdb（最主流本地搜索）</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">npm i hexo-generator-searchdb --save<br></code></pre></td></tr></table></figure>
-<p>生成搜索索引文件 <code>search.xml</code>，NexT&#x2F;Butterfly 原生支持本地搜索，<strong>无需第三方服务、免费</strong>。</p>
-<blockquote>
-<p>备选：hexo-algoliasearch（Algolia云端搜索，适合文章极多站点，需要注册账号）</p>
-</blockquote>
-<h1 id="四、页面性能优化（提速、压缩静态资源）"><a href="#四、页面性能优化（提速、压缩静态资源）" class="headerlink" title="四、页面性能优化（提速、压缩静态资源）"></a>四、页面性能优化（提速、压缩静态资源）</h1><h2 id="hexo-optimize（Next官方维护，推荐）"><a href="#hexo-optimize（Next官方维护，推荐）" class="headerlink" title="hexo-optimize（Next官方维护，推荐）"></a>hexo-optimize（Next官方维护，推荐）</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">npm i hexo-optimize<br></code></pre></td></tr></table></figure>
-<p>自动压缩 HTML&#x2F;CSS&#x2F;JS，资源哈希缓存、内联关键CSS，提升PageSpeed分数。</p>
-<h2 id="hexo-lazyload-image"><a href="#hexo-lazyload-image" class="headerlink" title="hexo-lazyload-image"></a>hexo-lazyload-image</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">npm i hexo-lazyload-image --save<br></code></pre></td></tr></table></figure>
-<p>图片懒加载，首屏加载提速；可以设置占位图。</p>
-<blockquote>
-<p>备选 hexo-neat &#x2F; hexo-all-minifier，但是all-minifier容易出现渲染异常，新手优先 hexo-optimize。</p>
-</blockquote>
-<h1 id="五、SEO优化"><a href="#五、SEO优化" class="headerlink" title="五、SEO优化"></a>五、SEO优化</h1><ol>
-<li><strong>hexo-autonofollow</strong><br>外链自动添加 <code>rel=&quot;nofollow&quot;</code>，防止权重流失</li>
+<h3 id="2-fnm（Fast-Node-Manager）"><a href="#2-fnm（Fast-Node-Manager）" class="headerlink" title="2. fnm（Fast Node Manager）"></a>2. fnm（Fast Node Manager）</h3><p>fnm &#x3D; <strong>专门的 Node.js 多版本管理器（Rust 编写，nvm 现代化高速替代品）</strong><br>✅ 优势：</p>
+<ol>
+<li>同时保存任意数量 Node 版本，一条命令切换：<code>fnm use 18</code></li>
+<li>原生支持 <code>.nvmrc</code> &#x2F; <code>.node-version</code>，进入项目文件夹<strong>自动切换对应 Node</strong>（开发刚需）</li>
+<li>启动、切换速度远快于 bash 写的 nvm</li>
+<li>跨平台：macOS &#x2F; Linux &#x2F; Windows 通用</li>
+<li>版本完全隔离，npm&#x2F;pnpm 全局包互不干扰</li>
 </ol>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">npm i hexo-autonofollow --save<br></code></pre></td></tr></table></figure>
-<ol start="2">
-<li><strong>hexo-baidu-url-submit</strong><br>新建文章自动推送链接给百度，加速国内收录</li>
-</ol>
-<h1 id="六、评论系统相关插件（按需选择一套即可，不要混用）"><a href="#六、评论系统相关插件（按需选择一套即可，不要混用）" class="headerlink" title="六、评论系统相关插件（按需选择一套即可，不要混用）"></a>六、评论系统相关插件（按需选择一套即可，不要混用）</h1><ol>
-<li><strong>@waline&#x2F;hexo-next</strong> Waline评论（免费，支持邮件通知）</li>
-<li><strong>hexo-comments-giscus</strong> Giscus（基于GitHub Discussion，零服务器，程序员首选）<blockquote>
-<p>很多主题内置Waline&#x2F;Giscus配置，有时不需要单独安装插件，优先看主题文档。</p>
+<h2 id="二、详细对比表"><a href="#二、详细对比表" class="headerlink" title="二、详细对比表"></a>二、详细对比表</h2><table>
+<thead>
+<tr>
+<th>能力</th>
+<th>brew 安装node</th>
+<th>fnm</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>多版本共存</td>
+<td>✅可以安装，但<strong>不能一键切换</strong></td>
+<td>✅原生支持，一键切换</td>
+</tr>
+<tr>
+<td>项目自动切换(.nvmrc)</td>
+<td>❌不支持</td>
+<td>✅原生支持 <code>--use-on-cd</code></td>
+</tr>
+<tr>
+<td>精确安装任意小版本</td>
+<td>⚠️brew 旧版本经常缺失、很难锁定精确版本</td>
+<td>✅官方源所有 node 版本随便装</td>
+</tr>
+<tr>
+<td>全局包隔离</td>
+<td>❌多个 node@xx 全局包容易混乱</td>
+<td>✅每个node版本独立npm全局环境</td>
+</tr>
+<tr>
+<td>升级风险</td>
+<td>❌brew update 被动升级node</td>
+<td>✅不会自动更新已安装Node</td>
+</tr>
+<tr>
+<td>适用场景</td>
+<td>系统工具依赖<strong>固定单个node</strong></td>
+<td>日常前端&#x2F;全栈开发，多项目多Node版本</td>
+</tr>
+</tbody></table>
+<h2 id="三、两种正确搭配方案（推荐实践）"><a href="#三、两种正确搭配方案（推荐实践）" class="headerlink" title="三、两种正确搭配方案（推荐实践）"></a>三、两种正确搭配方案（推荐实践）</h2><h3 id="✅-方案A（绝大多数开发者推荐）"><a href="#✅-方案A（绝大多数开发者推荐）" class="headerlink" title="✅ 方案A（绝大多数开发者推荐）"></a>✅ 方案A（绝大多数开发者推荐）</h3><p><strong>brew 只用来安装 fnm，Node 全部交给 fnm 管理</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment"># 1. brew 安装 fnm</span><br>brew install fnm<br><br><span class="hljs-comment"># 2. shell 配置(~/.zshrc)</span><br><span class="hljs-built_in">eval</span> <span class="hljs-string">&quot;<span class="hljs-subst">$(fnm env --use-on-cd)</span>&quot;</span><br><br><span class="hljs-comment"># 3. 卸载 brew 上所有 node，避免冲突</span><br>brew remove node node@16 node@18 node@20<br></code></pre></td></tr></table></figure>
+<blockquote>
+<p>原则：<strong>系统不要同时存在 brew-node + fnm-node，极易PATH冲突</strong></p>
 </blockquote>
+<h3 id="⚠️-方案B（仅极少数场景）"><a href="#⚠️-方案B（仅极少数场景）" class="headerlink" title="⚠️ 方案B（仅极少数场景）"></a>⚠️ 方案B（仅极少数场景）</h3><p>只用 brew node，<strong>仅限你永远只需要一个固定 Node 版本</strong><br>适合：服务器、简单脚本、工具依赖，不会同时维护多个前端项目。</p>
+<blockquote>
+<p>只要你需要同时维护2个以上项目，立刻放弃这种方案。</p>
+</blockquote>
+<h2 id="四、常见误区澄清"><a href="#四、常见误区澄清" class="headerlink" title="四、常见误区澄清"></a>四、常见误区澄清</h2><ol>
+<li><p>❌误区：<code>brew 可以装 node@18 node@20，足够用</code><br>真实情况：只能手动硬改PATH切换，没有自动切换，团队项目<code>.nvmrc</code>完全无法利用，效率极低。</p>
+</li>
+<li><p>❌误区：fnm 和 brew node 可以混用<br>强烈不建议。很容易出现 <code>which node</code> 一会指向 brew、一会指向 fnm，疑难bug排查半天。</p>
 </li>
 </ol>
-<h1 id="七、实用趣味-拓展插件"><a href="#七、实用趣味-拓展插件" class="headerlink" title="七、实用趣味&#x2F;拓展插件"></a>七、实用趣味&#x2F;拓展插件</h1><h2 id="hexo-douban"><a href="#hexo-douban" class="headerlink" title="hexo-douban"></a>hexo-douban</h2><p>展示豆瓣书单、观影、音乐列表</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">npm i hexo-douban --save<br></code></pre></td></tr></table></figure>
-
-<h2 id="hexo-pwa"><a href="#hexo-pwa" class="headerlink" title="hexo-pwa"></a>hexo-pwa</h2><p>开启PWA渐进式网页应用，手机可以添加到桌面、离线缓存</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">npm i hexo-pwa --save<br></code></pre></td></tr></table></figure>
-
-<h2 id="hexo-related-popular-posts"><a href="#hexo-related-popular-posts" class="headerlink" title="hexo-related-popular-posts"></a>hexo-related-popular-posts</h2><p>自动生成<strong>相关文章推荐</strong>，增加页面停留时长</p>
-<h2 id="hexo-auto-category"><a href="#hexo-auto-category" class="headerlink" title="hexo-auto-category"></a>hexo-auto-category</h2><p>根据文件目录自动生成分类，不用手动在Front-matter写categories</p>
-<h1 id="八、代码高亮（二选一，不要同时开启）"><a href="#八、代码高亮（二选一，不要同时开启）" class="headerlink" title="八、代码高亮（二选一，不要同时开启）"></a>八、代码高亮（二选一，不要同时开启）</h1><ol>
-<li><strong>Prism：hexo-prism-plugin</strong>（前端渲染高亮，现代风格，支持行号复制）</li>
-<li>默认 highlight.js（Hexo原生，无需额外插件）<blockquote>
-<p>⚠️ 如果你使用 <code>hexo-renderer-markdown-it</code>，建议统一管理代码高亮，避免双重渲染错乱。</p>
-</blockquote>
-</li>
+<h2 id="五、最终选择建议"><a href="#五、最终选择建议" class="headerlink" title="五、最终选择建议"></a>五、最终选择建议</h2><ol>
+<li><strong>日常前端&#x2F;全栈开发、经常切换项目、不同项目要求不同Node版本 → fnm（首选）</strong></li>
+<li><strong>机器仅运行固定脚本，永远只使用单一Node版本，不做多项目开发 → brew node 够用</strong></li>
 </ol>
-<h1 id="⚠️-重要避坑提醒"><a href="#⚠️-重要避坑提醒" class="headerlink" title="⚠️ 重要避坑提醒"></a>⚠️ 重要避坑提醒</h1><ol>
-<li><strong>同类功能插件只装一个</strong>：多个压缩插件、多个渲染器会引发页面错乱、构建卡死</li>
-<li>Hexo 升级到 v7 之后，部分多年未更新的老旧插件不再兼容，优先选近2年持续维护项目</li>
-<li>静态资源压缩插件如果开启过度，可能造成代码块样式、表情符号丢失，记得配置exclude排除路径</li>
-<li>使用 <code>hexo clean &amp;&amp; hexo g</code> 构建测试，出现报错立刻卸载冲突插件</li>
-</ol>
+<h2 id="补充：简单-fnm-常用命令参考"><a href="#补充：简单-fnm-常用命令参考" class="headerlink" title="补充：简单 fnm 常用命令参考"></a>补充：简单 fnm 常用命令参考</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs bash">fnm install --lts       <span class="hljs-comment"># 安装最新LTS</span><br>fnm install 20.12.2      <span class="hljs-comment"># 指定精确版本</span><br>fnm use 20               <span class="hljs-comment"># 临时切换</span><br>fnm default 20           <span class="hljs-comment"># 设置默认版本</span><br>fnm list                 <span class="hljs-comment"># 查看已安装版本</span><br></code></pre></td></tr></table></figure>
 
                 
               </div>
@@ -607,15 +452,8 @@
     
       <span class="category-chain">
         
-  <a href="/categories/Hexo%E5%8D%9A%E5%AE%A2/" class="category-chain-item">Hexo博客</a>
+  <a href="/categories/%E9%9A%8F%E8%AE%B0/" class="category-chain-item">随记</a>
   
-  
-    <span>></span>
-    
-  <a href="/categories/Hexo%E5%8D%9A%E5%AE%A2/%E6%8F%92%E4%BB%B6/" class="category-chain-item">插件</a>
-  
-  
-
   
 
       </span>
@@ -626,6 +464,13 @@
     </div>
   
   
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/AI%E9%9A%8F%E8%AE%B0/" class="print-no-link">#AI随记</a>
+      
+    </div>
+  
 </div>
 
 
@@ -634,8 +479,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>Hexo精选插件</div>
-      <div>https://blog.carlvictor.cn/posts/2c151f31.html</div>
+      <div>fnm VS brew 哪个更适合用来进行node版本管理</div>
+      <div>https://blog.carlvictor.cn/posts/7c6f499b.html</div>
     </div>
     <div class="license-meta">
       
@@ -647,7 +492,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2026年7月27日</div>
+          <div>2026年7月29日</div>
         </div>
       
       
@@ -679,18 +524,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/posts/24caea6b.html" title="Hexo常用命令">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">Hexo常用命令</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/posts/dd7e20f7.html" title="Mac本地部署Hexo">
-                        <span class="hidden-mobile">Mac本地部署Hexo</span>
+                      <a href="/posts/f3a7c2d9.html" title="Hexo注入代码实现Fluid主题首页自定义">
+                        <span class="hidden-mobile">Hexo注入代码实现Fluid主题首页自定义</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>

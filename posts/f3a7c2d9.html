@@ -21,23 +21,21 @@
   
     <meta name="description" content="如何通过注入代码实现 Fluid主题 首页 banner 的 subtitle（副标题）下方添加一行站点描述（description）">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hexo注入代码实现首页自定义">
+<meta property="og:title" content="Hexo注入代码实现Fluid主题首页自定义">
 <meta property="og:url" content="https://blog.carlvictor.cn/posts/f3a7c2d9.html">
 <meta property="og:site_name" content="CVblog">
 <meta property="og:description" content="如何通过注入代码实现 Fluid主题 首页 banner 的 subtitle（副标题）下方添加一行站点描述（description）">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://blog.carlvictor.cn/img/index_img/hexo.webp">
 <meta property="article:published_time" content="2026-07-28T06:30:00.000Z">
-<meta property="article:modified_time" content="2026-07-28T11:36:01.143Z">
+<meta property="article:modified_time" content="2026-07-29T10:13:40.382Z">
 <meta property="article:author" content="Carl Victor">
 <meta property="article:tag" content="Fluid主题">
 <meta property="article:tag" content="Hexo">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://blog.carlvictor.cn/img/index_img/hexo.webp">
   
   
   
-  <title>Hexo注入代码实现首页自定义 - CVblog</title>
+  <title>Hexo注入代码实现Fluid主题首页自定义 - CVblog</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -75,7 +73,7 @@
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
     Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"blog.carlvictor.cn","root":"/","version":"1.9.9","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":["home"]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"bash"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"expand_all":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"openkounter":{"server_url":"https://open-kounter.mintimate.cn","path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+    var CONFIG = {"hostname":"blog.carlvictor.cn","root":"/","version":"1.9.9","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":["home"]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"bash"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"expand_all":true,"placement":"right","headingSelector":"h1,h2,h3","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"openkounter":{"server_url":"https://open-kounter.mintimate.cn","path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
 
     if (CONFIG.web_analytics.follow_dnt) {
       var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
@@ -280,7 +278,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle">Hexo注入代码实现首页自定义</span>
+            <span id="subtitle">Hexo注入代码实现Fluid主题首页自定义</span>
           
         </div>
 
@@ -346,6 +344,172 @@
   <div class="row nomargin-x">
     <div class="side-col d-none d-lg-block col-lg-2">
       
+  <aside class="sidebar category-bar" style="margin-right: -1rem">
+    
+
+
+
+
+
+<div class="category-list">
+  
+  
+    
+    
+    
+    <div class="category row nomargin-x">
+      <a class="category-item 
+          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="Hexo博客"
+        id="heading-a15d0a42cce69e166eb81017d78818c5" role="tab" data-toggle="collapse" href="#collapse-a15d0a42cce69e166eb81017d78818c5"
+        aria-expanded="true"
+      >
+        Hexo博客
+        <span class="list-group-count">(4)</span>
+        <i class="iconfont icon-arrowright"></i>
+      </a>
+      
+      <div class="category-collapse collapse show" id="collapse-a15d0a42cce69e166eb81017d78818c5"
+           role="tabpanel" aria-labelledby="heading-a15d0a42cce69e166eb81017d78818c5">
+        
+        
+          
+          
+  <div class="category-post-list">
+    
+    
+      
+      
+        <a href="/posts/668c821b.html" title="Hexo从入门到入土"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">Hexo从入门到入土</span>
+        </a>
+      
+    
+  </div>
+
+          
+  
+    
+    
+    
+    <div class="category-sub row nomargin-x">
+      <a class="category-subitem collapsed
+          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="安装部署"
+        id="heading-039d392cea6b20609a2aa94015441bad" role="tab" data-toggle="collapse" href="#collapse-039d392cea6b20609a2aa94015441bad"
+        aria-expanded="false"
+      >
+        安装部署
+        <span class="list-group-count">(1)</span>
+        <i class="iconfont icon-arrowright"></i>
+      </a>
+      
+      <div class="category-collapse collapse " id="collapse-039d392cea6b20609a2aa94015441bad"
+           role="tabpanel" aria-labelledby="heading-039d392cea6b20609a2aa94015441bad">
+        
+        
+          
+  <div class="category-post-list">
+    
+    
+      
+      
+        <a href="/posts/dd7e20f7.html" title="Mac本地部署Hexo"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">Mac本地部署Hexo</span>
+        </a>
+      
+    
+  </div>
+
+        
+      </div>
+    </div>
+  
+    
+    
+    
+    <div class="category-sub row nomargin-x">
+      <a class="category-subitem collapsed
+          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="插件"
+        id="heading-236b0cdd2e18418fd17d3cdfcace239e" role="tab" data-toggle="collapse" href="#collapse-236b0cdd2e18418fd17d3cdfcace239e"
+        aria-expanded="false"
+      >
+        插件
+        <span class="list-group-count">(1)</span>
+        <i class="iconfont icon-arrowright"></i>
+      </a>
+      
+      <div class="category-collapse collapse " id="collapse-236b0cdd2e18418fd17d3cdfcace239e"
+           role="tabpanel" aria-labelledby="heading-236b0cdd2e18418fd17d3cdfcace239e">
+        
+        
+          
+  <div class="category-post-list">
+    
+    
+      
+      
+        <a href="/posts/2c151f31.html" title="Hexo精选插件"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">Hexo精选插件</span>
+        </a>
+      
+    
+  </div>
+
+        
+      </div>
+    </div>
+  
+    
+    
+    
+    <div class="category-sub row nomargin-x">
+      <a class="category-subitem 
+          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="进阶"
+        id="heading-fa11f8c07c1629d5f0ab1cfecdf1f686" role="tab" data-toggle="collapse" href="#collapse-fa11f8c07c1629d5f0ab1cfecdf1f686"
+        aria-expanded="true"
+      >
+        进阶
+        <span class="list-group-count">(1)</span>
+        <i class="iconfont icon-arrowright"></i>
+      </a>
+      
+      <div class="category-collapse collapse show" id="collapse-fa11f8c07c1629d5f0ab1cfecdf1f686"
+           role="tabpanel" aria-labelledby="heading-fa11f8c07c1629d5f0ab1cfecdf1f686">
+        
+        
+          
+  <div class="category-post-list">
+    
+    
+      
+      
+        <a href="/posts/f3a7c2d9.html" title="Hexo注入代码实现Fluid主题首页自定义"
+           class="list-group-item list-group-item-action
+           active">
+          <span class="category-post">Hexo注入代码实现Fluid主题首页自定义</span>
+        </a>
+      
+    
+  </div>
+
+        
+      </div>
+    </div>
+  
+        
+      </div>
+    </div>
+  
+</div>
+
+
+  </aside>
+
 
     </div>
 
@@ -353,7 +517,7 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">Hexo注入代码实现首页自定义</h1>
+            <h1 id="seo-header">Hexo注入代码实现Fluid主题首页自定义</h1>
             
             
               <div class="markdown-body">
@@ -582,7 +746,7 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>Hexo注入代码实现首页自定义</div>
+      <div>Hexo注入代码实现Fluid主题首页自定义</div>
       <div>https://blog.carlvictor.cn/posts/f3a7c2d9.html</div>
     </div>
     <div class="license-meta">
@@ -626,6 +790,12 @@
                 <div class="post-prevnext my-3">
                   <article class="post-prev col-6">
                     
+                    
+                      <a href="/posts/7c6f499b.html" title="fnm VS brew 哪个更适合用来进行node版本管理">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">fnm VS brew 哪个更适合用来进行node版本管理</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
                     
                   </article>
                   <article class="post-next col-6">

@@ -27,7 +27,7 @@
 <meta property="og:description" content="使用Mac在本地部署Hexo，不关心上线">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2026-07-25T15:26:22.000Z">
-<meta property="article:modified_time" content="2026-07-27T10:06:06.307Z">
+<meta property="article:modified_time" content="2026-07-29T10:12:25.802Z">
 <meta property="article:author" content="Carl Victor">
 <meta property="article:tag" content="安装部署">
 <meta name="twitter:card" content="summary_large_image">
@@ -72,7 +72,7 @@
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
     Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"blog.carlvictor.cn","root":"/","version":"1.9.9","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":["home"]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"bash"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"expand_all":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"openkounter":{"server_url":"https://open-kounter.mintimate.cn","path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+    var CONFIG = {"hostname":"blog.carlvictor.cn","root":"/","version":"1.9.9","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":["home"]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"bash"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"expand_all":true,"placement":"right","headingSelector":"h1,h2,h3","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"openkounter":{"server_url":"https://open-kounter.mintimate.cn","path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
 
     if (CONFIG.web_analytics.follow_dnt) {
       var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
@@ -487,10 +487,10 @@
     
       
       
-        <a href="/posts/f3a7c2d9.html" title="Hexo注入代码实现首页自定义"
+        <a href="/posts/f3a7c2d9.html" title="Hexo注入代码实现Fluid主题首页自定义"
            class="list-group-item list-group-item-action
            ">
-          <span class="category-post">Hexo注入代码实现首页自定义</span>
+          <span class="category-post">Hexo注入代码实现Fluid主题首页自定义</span>
         </a>
       
     
@@ -527,9 +527,10 @@
 <p>[!WARNING]</p>
 <p>brew、fnm、pnpm需要配置国内源</p>
 </blockquote>
+<p><a href="/posts/7c6f499b.html">fnm VS brew 哪个更适合用来进行node版本管理</a></p>
 <h1 id="安装fnm"><a href="#安装fnm" class="headerlink" title="安装fnm"></a>安装fnm</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">brew install fnm<br></code></pre></td></tr></table></figure>
 
-<h2 id="查看shell，并设置环境变量-国内源"><a href="#查看shell，并设置环境变量-国内源" class="headerlink" title="查看shell，并设置环境变量&#x2F;国内源"></a>查看shell，并设置环境变量&#x2F;国内源</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">echo</span> <span class="hljs-variable">$SHELL</span><br><br><span class="hljs-comment"># 如果为/bin/zsh（mac 默认）</span><br><span class="hljs-built_in">echo</span> <span class="hljs-string">&#x27;eval &quot;$(fnm env --use-on-cd)&quot;&#x27;</span> &gt;&gt; ~/.zshrc<br><span class="hljs-built_in">echo</span> <span class="hljs-string">&#x27;export FNM_NODE_DIST_MIRROR=&quot;https://npmmirror.com/mirrors/node&quot;&#x27;</span> &gt;&gt; ~/.zshrc<br><span class="hljs-built_in">source</span> ~/.zshrc<br><br><span class="hljs-comment"># 如果为/bin/bash</span><br><span class="hljs-built_in">echo</span> <span class="hljs-string">&#x27;eval &quot;$(fnm env --use-on-cd)&quot;&#x27;</span> &gt;&gt; ~/.bashrc<br><span class="hljs-built_in">echo</span> <span class="hljs-string">&#x27;export FNM_NODE_DIST_MIRROR=&quot;https://npmmirror.com/mirrors/node&quot;&#x27;</span> &gt;&gt; ~/.bashrc<br><span class="hljs-built_in">source</span> ~/.bashrc<br></code></pre></td></tr></table></figure>
+<h2 id="查看shell，并设置环境变量-国内源"><a href="#查看shell，并设置环境变量-国内源" class="headerlink" title="查看shell，并设置环境变量&#x2F;国内源"></a>查看shell，并设置环境变量&#x2F;国内源</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">echo</span> <span class="hljs-variable">$SHELL</span><br><br><span class="hljs-comment"># 如果为/bin/zsh（mac 默认）</span><br><span class="hljs-built_in">echo</span> <span class="hljs-string">&#x27;eval &quot;$(fnm env --use-on-cd)&quot;&#x27;</span> &gt;&gt; ~/.zshrc<br><span class="hljs-built_in">echo</span> <span class="hljs-string">&#x27;export FNM_NODE_DIST_MIRROR=&quot;https://npmmirror.com/mirrors/node&quot;&#x27;</span> &gt;&gt; ~/.zshrc<br><span class="hljs-built_in">source</span> ~/.zshrc<br><br><span class="hljs-comment"># ----------------------</span><br><span class="hljs-comment"># 如果为/bin/bash</span><br><span class="hljs-built_in">echo</span> <span class="hljs-string">&#x27;eval &quot;$(fnm env --use-on-cd)&quot;&#x27;</span> &gt;&gt; ~/.bashrc<br><span class="hljs-built_in">echo</span> <span class="hljs-string">&#x27;export FNM_NODE_DIST_MIRROR=&quot;https://npmmirror.com/mirrors/node&quot;&#x27;</span> &gt;&gt; ~/.bashrc<br><span class="hljs-built_in">source</span> ~/.bashrc<br></code></pre></td></tr></table></figure>
 
 <h2 id="安装node，及常用命令"><a href="#安装node，及常用命令" class="headerlink" title="安装node，及常用命令"></a>安装node，及常用命令</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs bash">fnm install 24    <span class="hljs-comment"># 装 node24</span><br>fnm use 24        <span class="hljs-comment"># 切换</span><br>fnm default 24    <span class="hljs-comment"># 设默认</span><br>fnm <span class="hljs-built_in">ls</span>            <span class="hljs-comment"># 已安装版本</span><br></code></pre></td></tr></table></figure>
 
@@ -650,15 +651,21 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/posts/668c821b.html" title="Hexo从入门到入土">
+                      <a href="/posts/2c151f31.html" title="Hexo精选插件">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">Hexo从入门到入土</span>
+                        <span class="hidden-mobile">Hexo精选插件</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
                   </article>
                   <article class="post-next col-6">
                     
+                    
+                      <a href="/posts/668c821b.html" title="Hexo从入门到入土">
+                        <span class="hidden-mobile">Hexo从入门到入土</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
                     
                   </article>
                 </div>
