@@ -19,22 +19,28 @@
   <meta name="author" content="Carl Victor">
   <meta name="keywords" content="CV, 博客, 学习, 工作, 问题, 解决, 思考, 总结">
   
-    <meta name="description" content="FNOS（飞牛OS）默认不给普通&#x2F;管理员用户自动创建 &#x2F;home&#x2F;用户名，所以 SSH 登录会报： 1Could not chdir to home directory &#x2F;home&#x2F;xxx: No such file or directory  下面给你一套直接可用、一次性搞定的方法（不用改系统盘，也能解决 .ssh、密钥、Remote-SSH 问题）。  一、先确认">
+    <meta name="description" content="参考文档：ImmortalWrt25.12.0 安装后扩容 （for squashfs） &lt;- 被非x86步骤坑了参考视频：OpenWrt的空间扩容问题，可以这么直接解决！  squashfs &#x3D; 只读固件分区（rom）+ overlay可写分区所有插件、配置、docker、下载文件全部存在 overlay。OpenWrt官方原生镜像默认overlay只有 约280MB，非常小！需">
 <meta property="og:type" content="article">
-<meta property="og:title" content="FnOS添加用户家目录">
-<meta property="og:url" content="https://blog.carlvictor.cn/posts/c09dbf0c.html">
+<meta property="og:title" content="immortalwrt-25.12.1-x86-64-generic-squashfs-combined-efi.img扩容">
+<meta property="og:url" content="https://blog.carlvictor.cn/posts/ee1046fd.html">
 <meta property="og:site_name" content="CVblog">
-<meta property="og:description" content="FNOS（飞牛OS）默认不给普通&#x2F;管理员用户自动创建 &#x2F;home&#x2F;用户名，所以 SSH 登录会报： 1Could not chdir to home directory &#x2F;home&#x2F;xxx: No such file or directory  下面给你一套直接可用、一次性搞定的方法（不用改系统盘，也能解决 .ssh、密钥、Remote-SSH 问题）。  一、先确认">
+<meta property="og:description" content="参考文档：ImmortalWrt25.12.0 安装后扩容 （for squashfs） &lt;- 被非x86步骤坑了参考视频：OpenWrt的空间扩容问题，可以这么直接解决！  squashfs &#x3D; 只读固件分区（rom）+ overlay可写分区所有插件、配置、docker、下载文件全部存在 overlay。OpenWrt官方原生镜像默认overlay只有 约280MB，非常小！需">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2026-07-30T10:01:05.000Z">
-<meta property="article:modified_time" content="2026-07-30T10:03:06.655Z">
+<meta property="og:image" content="https://blog.carlvictor.cn/img/pages/immortalwrt-25-12-1-x86-64-generic-squashfs-combined-efi-img%E5%88%9D%E5%A7%8B%E5%8C%96-%E6%89%A9%E5%AE%B9/image-20260730223212915.png">
+<meta property="og:image" content="https://blog.carlvictor.cn/img/pages/immortalwrt-25-12-1-x86-64-generic-squashfs-combined-efi-img%E5%88%9D%E5%A7%8B%E5%8C%96-%E6%89%A9%E5%AE%B9/image-20260730224108084.png">
+<meta property="og:image" content="https://blog.carlvictor.cn/img/pages/immortalwrt-25-12-1-x86-64-generic-squashfs-combined-efi-img%E5%88%9D%E5%A7%8B%E5%8C%96-%E6%89%A9%E5%AE%B9/image-20260730225829504.png">
+<meta property="og:image" content="https://blog.carlvictor.cn/img/pages/immortalwrt-25-12-1-x86-64-generic-squashfs-combined-efi-img%E5%88%9D%E5%A7%8B%E5%8C%96-%E6%89%A9%E5%AE%B9/image-20260730230351897.png">
+<meta property="article:published_time" content="2026-07-30T14:11:38.000Z">
+<meta property="article:modified_time" content="2026-07-31T09:02:00.725Z">
 <meta property="article:author" content="Carl Victor">
-<meta property="article:tag" content="AI随记">
+<meta property="article:tag" content="OpenWrt">
+<meta property="article:tag" content="软路由">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://blog.carlvictor.cn/img/pages/immortalwrt-25-12-1-x86-64-generic-squashfs-combined-efi-img%E5%88%9D%E5%A7%8B%E5%8C%96-%E6%89%A9%E5%AE%B9/image-20260730223212915.png">
   
   
   
-  <title>FnOS添加用户家目录 - CVblog</title>
+  <title>immortalwrt-25.12.1-x86-64-generic-squashfs-combined-efi.img扩容 - CVblog</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -277,7 +283,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle">FnOS添加用户家目录</span>
+            <span id="subtitle">immortalwrt-25.12.1-x86-64-generic-squashfs-combined-efi.img扩容</span>
           
         </div>
 
@@ -288,7 +294,7 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2026-07-30 18:01" pubdate>
+        <time datetime="2026-07-30 22:11" pubdate>
           2026年7月30日 晚上
         </time>
       </span>
@@ -300,7 +306,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          841 字
+          2.3k 字
         
       </span>
     
@@ -311,7 +317,7 @@
         
         
         
-          8 分钟
+          20 分钟
         
       </span>
     
@@ -343,6 +349,98 @@
   <div class="row nomargin-x">
     <div class="side-col d-none d-lg-block col-lg-2">
       
+  <aside class="sidebar category-bar" style="margin-right: -1rem">
+    
+
+
+
+
+
+<div class="category-list">
+  
+  
+    
+    
+    
+    <div class="category row nomargin-x">
+      <a class="category-item 
+          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="immortalWrt"
+        id="heading-d0abec9ac2be47a920c747722106f6b9" role="tab" data-toggle="collapse" href="#collapse-d0abec9ac2be47a920c747722106f6b9"
+        aria-expanded="true"
+      >
+        immortalWrt
+        <span class="list-group-count">(2)</span>
+        <i class="iconfont icon-arrowright"></i>
+      </a>
+      
+      <div class="category-collapse collapse show" id="collapse-d0abec9ac2be47a920c747722106f6b9"
+           role="tabpanel" aria-labelledby="heading-d0abec9ac2be47a920c747722106f6b9">
+        
+        
+          
+          
+  <div class="category-post-list">
+    
+    
+      
+      
+        <a href="/posts/cdcef164.html" title="immortalWrt 软路由固件下载方法"
+           class="list-group-item list-group-item-action
+           ">
+          <span class="category-post">immortalWrt 软路由固件下载方法</span>
+        </a>
+      
+    
+  </div>
+
+          
+  
+    
+    
+    
+    <div class="category-sub row nomargin-x">
+      <a class="category-subitem 
+          list-group-item category-item-action col-10 col-md-11 col-xm-11" title="安装部署"
+        id="heading-039d392cea6b20609a2aa94015441bad" role="tab" data-toggle="collapse" href="#collapse-039d392cea6b20609a2aa94015441bad"
+        aria-expanded="true"
+      >
+        安装部署
+        <span class="list-group-count">(1)</span>
+        <i class="iconfont icon-arrowright"></i>
+      </a>
+      
+      <div class="category-collapse collapse show" id="collapse-039d392cea6b20609a2aa94015441bad"
+           role="tabpanel" aria-labelledby="heading-039d392cea6b20609a2aa94015441bad">
+        
+        
+          
+  <div class="category-post-list">
+    
+    
+      
+      
+        <a href="/posts/ee1046fd.html" title="immortalwrt-25.12.1-x86-64-generic-squashfs-combined-efi.img扩容"
+           class="list-group-item list-group-item-action
+           active">
+          <span class="category-post">immortalwrt-25.12.1-x86-64-generic-squashfs-combined-efi.img扩容</span>
+        </a>
+      
+    
+  </div>
+
+        
+      </div>
+    </div>
+  
+        
+      </div>
+    </div>
+  
+</div>
+
+
+  </aside>
+
 
     </div>
 
@@ -350,41 +448,61 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">FnOS添加用户家目录</h1>
+            <h1 id="seo-header">immortalwrt-25.12.1-x86-64-generic-squashfs-combined-efi.img扩容</h1>
             
             
               <div class="markdown-body">
                 
-                <p>FNOS（飞牛OS）<strong>默认不给普通&#x2F;管理员用户自动创建 &#x2F;home&#x2F;用户名</strong>，所以 SSH 登录会报：</p>
-<figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs livecodeserver">Could <span class="hljs-keyword">not</span> chdir <span class="hljs-built_in">to</span> home <span class="hljs-built_in">directory</span> /home/xxx: No such <span class="hljs-built_in">file</span> <span class="hljs-keyword">or</span> <span class="hljs-built_in">directory</span><br></code></pre></td></tr></table></figure>
+                <p>参考文档：<a target="_blank" rel="noopener" href="https://blog.csdn.net/cinqun51/article/details/162348380">ImmortalWrt25.12.0 安装后扩容 （for squashfs）</a> &lt;- 被非x86步骤坑了<br>参考视频：<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1WK411Z79q/?spm_id_from=333.1007.top_right_bar_window_history.content.click&vd_source=070103fcce6a530a44ee0c5ae15aa375">OpenWrt的空间扩容问题，可以这么直接解决！
+</a></p>
+<p>squashfs &#x3D; 只读固件分区（rom）+ <strong>overlay可写分区</strong><br>所有插件、配置、docker、下载文件全部存在 overlay。OpenWrt官方原生镜像默认overlay只有 <strong>约280MB</strong>，非常小！需要扩容才能充分利用磁盘空间</p>
+<blockquote>
+<p>[!NOTE]<br>额外方案备选（很多人忽略）不扩容overlay！<br>保持默认小overlay，<strong>docker目录迁移到独立数据分区</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta prompt_">&gt;</span><span class="language-bash">/etc/config/dockerd</span><br><span class="hljs-meta prompt_">&gt;</span><span class="language-bash">option data_root <span class="hljs-string">&#x27;/mnt/data/docker&#x27;</span></span><br></code></pre></td></tr></table></figure>
+<p>优势：系统分区压力小，就算docker塞满也不会搞崩OpenWrt本体，我N5105就是这么用。</p>
+</blockquote>
+<h3 id="1-安装必要的工具"><a href="#1-安装必要的工具" class="headerlink" title="1. 安装必要的工具"></a>1. 安装必要的工具</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">apk add fdisk resize2fs blkid<br></code></pre></td></tr></table></figure>
 
-<p>下面给你一套<strong>直接可用、一次性搞定</strong>的方法（不用改系统盘，也能解决 .ssh、密钥、Remote-SSH 问题）。</p>
+<h3 id="2-看一下要扩容的硬盘和分区，要记下分区的起始位置（如图示为66048）"><a href="#2-看一下要扩容的硬盘和分区，要记下分区的起始位置（如图示为66048）" class="headerlink" title="2. 看一下要扩容的硬盘和分区，要记下分区的起始位置（如图示为66048）"></a>2. 看一下要扩容的硬盘和分区，要记下分区的起始位置（如图示为66048）</h3><img src="../img/pages/immortalwrt-25-12-1-x86-64-generic-squashfs-combined-efi-img%E5%88%9D%E5%A7%8B%E5%8C%96-%E6%89%A9%E5%AE%B9/image-20260730223212915.png" srcset="/img/loading.gif" lazyload alt="image-20260730223212915" style="zoom: 33%;" />
+
+<h3 id="3-输入d删除2分区，并输入n重新创建2分区，起始位置不能变"><a href="#3-输入d删除2分区，并输入n重新创建2分区，起始位置不能变" class="headerlink" title="3. 输入d删除2分区，并输入n重新创建2分区，起始位置不能变;"></a>3. 输入<code>d</code>删除2分区，并输入<code>n</code>重新创建2分区，起始位置不能变;</h3>
+    <div class="fold">
+      <div class="fold-title fold-info collapsed" data-toggle="collapse" href="#collapse-e0d27390" role="button" aria-expanded="false" aria-controls="collapse-e0d27390">
+        <div class="fold-arrow">▶</div>扩容大小参考这里
+      </div>
+      <div class="fold-collapse collapse" id="collapse-e0d27390">
+        <div class="fold-content">
+          <p>一、overlay分区推荐尺寸（按硬盘区分）</p> <table> <thead> <tr> <th>内置硬盘容量</th> <th>overlay推荐大小</th> <th>说明</th> </tr> </thead> <tbody><tr> <td>16GB SSD</td> <td>8GB</td> <td>日常插件 + 少量docker</td> </tr> <tr> <td>32GB SSD</td> <td>12～16GB</td> <td>主流选择，docker、AdGuard、qBittorrent基础版</td> </tr> <tr> <td>64GB SSD</td> <td>20～32GB</td> <td>大量容器、网盘、缓存、日志</td> </tr> <tr> <td>≥128GB</td> <td>32～48GB</td> <td>不建议把整块盘给overlay！剩余空间单独做数据盘</td> </tr> </tbody></table> <p>重要忠告<br>❌ <strong>不要把整个硬盘全部划给overlay！</strong><br>原因：</p> <ol> <li>overlay是系统分区，如果塞满100%，OpenWrt直接卡死、无法登陆、配置损坏；</li> <li>下载、PT、媒体文件<strong>不要存overlay</strong>，建议单独挂载一个独立数据分区存放。</li> </ol> <p>✅ 黄金通用方案（N5105最常用32G NVMe）<br>overlay 设置 <strong>16GB</strong>，剩下空间新建ext4分区，挂载为 <code>/mnt/data</code> 存放下载&#x2F;缓存。</p> <p>使用建议（避坑关键点）</p> <ol> <li><p><strong>日常轻度使用（仅科学上网、防火墙、AdGuardHome）</strong><br>32G盘 → overlay 12G足够</p> </li> <li><p><strong>中度使用（Docker，旁路由，多个容器）</strong><br>32G盘 → overlay 16G</p> </li> <li><p><strong>重度：Docker+下载工具+大量缓存</strong><br>64G盘 → overlay 24G，剩余独立分区放资源</p> </li> <li><p>阈值提醒<br>overlay占用尽量不要长期超过85%，定时清理docker镜像、日志。</p> </li> </ol> 
+        </div>
+      </div>
+    </div>
+
+<p>   <img src="/../img/pages/immortalwrt-25-12-1-x86-64-generic-squashfs-combined-efi-img%E5%88%9D%E5%A7%8B%E5%8C%96-%E6%89%A9%E5%AE%B9/image-20260730224108084.png" srcset="/img/loading.gif" lazyload alt="image-20260730224108084"></p>
+<h3 id="4-输入w，写入并退出；"><a href="#4-输入w，写入并退出；" class="headerlink" title="4. 输入w，写入并退出；"></a>4. 输入<code>w</code>，写入并退出；</h3><h3 id="5-执行-losetup，-显示如下，记住OFFSET数字10223616"><a href="#5-执行-losetup，-显示如下，记住OFFSET数字10223616" class="headerlink" title="5. 执行 losetup， 显示如下，记住OFFSET数字10223616"></a>5. 执行 <code>losetup</code>， 显示如下，记住<code>OFFSET</code>数字10223616</h3><figure class="highlight tap"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs tap">root@ImmortalWrt:~<span class="hljs-comment"># losetup </span><br>NAME       SIZELIMIT   OFFSET AUTOCLEAR RO BACK-FILE  DIO LOG-SEC<br>/dev/loop0        <span class="hljs-number"> 0 </span>10354688        <span class="hljs-number"> 1 </span><span class="hljs-number"> 0 </span>/nvme0n1p2  <span class="hljs-number"> 0 </span>    512<br></code></pre></td></tr></table></figure>
+
+<h3 id="6-执行-losetup-f-o-10223616-dev-nvme0n1p2，这里的数字要和上一步的一样"><a href="#6-执行-losetup-f-o-10223616-dev-nvme0n1p2，这里的数字要和上一步的一样" class="headerlink" title="6. 执行 losetup -f -o 10223616 /dev/nvme0n1p2，这里的数字要和上一步的一样"></a>6. 执行 <code>losetup -f -o 10223616 /dev/nvme0n1p2</code>，这里的数字要和上一步的一样</h3><h3 id="7-执行-losetup，-查看loop1是否有相同的OFFSET"><a href="#7-执行-losetup，-查看loop1是否有相同的OFFSET" class="headerlink" title="7. 执行 losetup， 查看loop1是否有相同的OFFSET"></a>7. 执行 losetup， 查看loop1是否有相同的OFFSET</h3><figure class="highlight tap"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs tap">root@ImmortalWrt:~<span class="hljs-comment"># losetup </span><br>NAME       SIZELIMIT   OFFSET AUTOCLEAR RO BACK-FILE      DIO LOG-SEC<br>/dev/loop1        <span class="hljs-number"> 0 </span>10354688        <span class="hljs-number"> 0 </span><span class="hljs-number"> 0 </span>/dev/nvme0n1p2  <span class="hljs-number"> 0 </span>    512<br>/dev/loop0        <span class="hljs-number"> 0 </span>10354688        <span class="hljs-number"> 1 </span><span class="hljs-number"> 0 </span>/nvme0n1p2      <span class="hljs-number"> 0 </span>    512<br></code></pre></td></tr></table></figure>
+
+<h3 id="8-执行一下下述步骤，否则在后续运行resize-f2fs时会失败"><a href="#8-执行一下下述步骤，否则在后续运行resize-f2fs时会失败" class="headerlink" title="8. 执行一下下述步骤，否则在后续运行resize.f2fs时会失败"></a>8. 执行一下下述步骤，否则在后续运行<code>resize.f2fs</code>时会失败</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs bash">mount /dev/loop1 /mnt<br><span class="hljs-built_in">ls</span> -l /mnt<br>umount /dev/loop1<br></code></pre></td></tr></table></figure>
+
+<h3 id="9-执行-lsblk-f，-查看UUID是否相同"><a href="#9-执行-lsblk-f，-查看UUID是否相同" class="headerlink" title="9. 执行 lsblk -f， 查看UUID是否相同"></a>9. 执行 lsblk -f， 查看UUID是否相同</h3><figure class="highlight smali"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs smali">root@ImmortalWrt:~<span class="hljs-comment"># lsblk -f</span><br>NAME          FSTYPE   FSVER LABEL       UUID                                 FSAVAIL FSUSE% MOUNTPOINTS<br>loop0         f2fs           rootfs_data a1f52071-d12f-441f-97fe-c64ebec45157  234.5M    19% /overlay<br>loop1         f2fs           rootfs_data a1f52071-d12f-441f-97fe-c64ebec45157                <br>nvme0n1                                                                                      <br>├─nvme0n1p1   vfat           kernel      1234-ABCD                              23.8M    25% /mnt/nvme0n1p1<br>├─nvme0n1p2   squashfs                                                              0   100% /rom<br>└─nvme0n1p128                                            <br></code></pre></td></tr></table></figure>
+
+<h3 id="10-重要步骤，执行-resize-f2fs-dev-loop1"><a href="#10-重要步骤，执行-resize-f2fs-dev-loop1" class="headerlink" title="10. 重要步骤，执行 resize.f2fs /dev/loop1"></a>10. 重要步骤，执行 <code>resize.f2fs /dev/loop1</code></h3><p>一连串输出后显示“ Done: 0.215767 secs”表示成功了，秒数各有不同</p>
+<h3 id="11-执行fdisk-l查看nvme0n1p2的Size"><a href="#11-执行fdisk-l查看nvme0n1p2的Size" class="headerlink" title="11. 执行fdisk -l查看nvme0n1p2的Size"></a>11. 执行<code>fdisk -l</code>查看nvme0n1p2的Size</h3><figure class="highlight tap"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs tap">Device           Start      End  Sectors  Size Type<br>/dev/nvme0n1p1    <span class="hljs-number"> 512 </span>  <span class="hljs-number"> 66047 </span>  <span class="hljs-number"> 65536 </span>  32M Linux filesystem<br>/dev/nvme0n1p2  <span class="hljs-number"> 66048 </span>67174399<span class="hljs-number"> 67108352 </span>  32G Linux filesystem<br>/dev/nvme0n1p128   <span class="hljs-number"> 34 </span>    <span class="hljs-number"> 511 </span>    <span class="hljs-number"> 478 </span> 239K BIOS boot<br></code></pre></td></tr></table></figure>
+
 <hr>
-<h2 id="一、先确认你的用户名和组"><a href="#一、先确认你的用户名和组" class="headerlink" title="一、先确认你的用户名和组"></a>一、先确认你的用户名和组</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">id</span><br></code></pre></td></tr></table></figure>
-<p>会看到类似：</p>
-<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs routeros"><span class="hljs-attribute">uid</span>=1000(admin) <span class="hljs-attribute">gid</span>=1000(admin) <span class="hljs-attribute">groups</span>=1000(admin)<br></code></pre></td></tr></table></figure>
-<p>记好：<strong>用户名&#x3D;admin，组&#x3D;admin</strong>（下面命令直接替换成你的）。</p>
-<hr>
-<h2 id="二、在数据盘建-home（推荐，避免写系统盘）"><a href="#二、在数据盘建-home（推荐，避免写系统盘）" class="headerlink" title="二、在数据盘建 home（推荐，避免写系统盘）"></a>二、在数据盘建 home（推荐，避免写系统盘）</h2><p>FNOS 数据盘一般在 <strong>&#x2F;vol1</strong> 或 <strong>&#x2F;vol2</strong>。</p>
-<h3 id="1）创建目录"><a href="#1）创建目录" class="headerlink" title="1）创建目录"></a>1）创建目录</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> <span class="hljs-built_in">mkdir</span> -p /vol1/home/admin<br></code></pre></td></tr></table></figure>
+<p>12-13下面的是x86架构需要做的事，不然会无法正常开机。</p>
+<h3 id="12-获取分区的PARTUUID；"><a href="#12-获取分区的PARTUUID；" class="headerlink" title="12. 获取分区的PARTUUID；"></a>12. 获取分区的<code>PARTUUID</code>；</h3><img src="../img/pages/immortalwrt-25-12-1-x86-64-generic-squashfs-combined-efi-img%E5%88%9D%E5%A7%8B%E5%8C%96-%E6%89%A9%E5%AE%B9/image-20260730225829504.png" srcset="/img/loading.gif" lazyload alt="image-20260730225829504" style="zoom:50%;" />
 
-<h3 id="2）权限改对（必须）"><a href="#2）权限改对（必须）" class="headerlink" title="2）权限改对（必须）"></a>2）权限改对（必须）</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> <span class="hljs-built_in">chown</span> admin:admin /vol1/home/admin<br><span class="hljs-built_in">sudo</span> <span class="hljs-built_in">chmod</span> 700 /vol1/home/admin<br></code></pre></td></tr></table></figure>
+<h3 id="13-编辑grub-cfg文件，将里的PARTUUID全部替换为刚刚拿到的"><a href="#13-编辑grub-cfg文件，将里的PARTUUID全部替换为刚刚拿到的" class="headerlink" title="13. 编辑grub.cfg文件，将里的PARTUUID全部替换为刚刚拿到的"></a>13. 编辑grub.cfg文件，将里的<code>PARTUUID</code>全部替换为刚刚拿到的</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">vim /boot/grub/grub.cfg<br></code></pre></td></tr></table></figure>
 
-<h3 id="3）把用户-home-指向这里（关键）"><a href="#3）把用户-home-指向这里（关键）" class="headerlink" title="3）把用户 home 指向这里（关键）"></a>3）把用户 home 指向这里（关键）</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> usermod -d /vol1/home/admin admin<br></code></pre></td></tr></table></figure>
-<p>如果提示“用户正在使用”：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> -i<br>usermod -d /vol1/home/admin admin<br><span class="hljs-built_in">exit</span><br></code></pre></td></tr></table></figure>
+<p><img src="/../img/pages/immortalwrt-25-12-1-x86-64-generic-squashfs-combined-efi-img%E5%88%9D%E5%A7%8B%E5%8C%96-%E6%89%A9%E5%AE%B9/image-20260730230351897.png" srcset="/img/loading.gif" lazyload alt="image-20260730230351897"></p>
+<h3 id="14-reboot重启就行了"><a href="#14-reboot重启就行了" class="headerlink" title="14. reboot重启就行了"></a>14. <code>reboot</code>重启就行了</h3><h2 id="剩余空就可以用来存放Data数据"><a href="#剩余空就可以用来存放Data数据" class="headerlink" title="剩余空就可以用来存放Data数据"></a>剩余空就可以用来存放Data数据</h2><p>使用<code>fdisk /dev/nvme0n1</code>创建新分区后，再使用下面的命令格式化新分区(ext4格式)</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">mkfs.ext4 -m 0 /dev/nvme0n1p3<br></code></pre></td></tr></table></figure>
+<p>参数解释：</p>
+<ul>
+<li>-m 0：取消保留 5% 系统预留空间（数据盘不需要）</li>
+</ul>
 
-<hr>
-<h2 id="三、做个软链接到-home（让程序都认）"><a href="#三、做个软链接到-home（让程序都认）" class="headerlink" title="三、做个软链接到 &#x2F;home（让程序都认）"></a>三、做个软链接到 &#x2F;home（让程序都认）</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> <span class="hljs-built_in">ln</span> -s /vol1/home/admin /home/admin<br></code></pre></td></tr></table></figure>
-
-<hr>
-<h2 id="四、测试"><a href="#四、测试" class="headerlink" title="四、测试"></a>四、测试</h2><p>重新登录：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">ssh admin@nas-ip<br></code></pre></td></tr></table></figure>
-<p>应该<strong>不再报错</strong>，并且：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">pwd</span><br><span class="hljs-comment"># /vol1/home/admin</span><br><span class="hljs-built_in">echo</span> <span class="hljs-variable">$HOME</span><br><span class="hljs-comment"># /vol1/home/admin</span><br></code></pre></td></tr></table></figure>
-
-<hr>
-<h2 id="五、如果你就想放系统盘-home（不推荐）"><a href="#五、如果你就想放系统盘-home（不推荐）" class="headerlink" title="五、如果你就想放系统盘 &#x2F;home（不推荐）"></a>五、如果你就想放系统盘 &#x2F;home（不推荐）</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> <span class="hljs-built_in">mkdir</span> -p /home/admin<br><span class="hljs-built_in">sudo</span> <span class="hljs-built_in">chown</span> admin:admin /home/admin<br><span class="hljs-built_in">sudo</span> <span class="hljs-built_in">chmod</span> 700 /home/admin<br><span class="hljs-built_in">sudo</span> usermod -d /home/admin admin<br></code></pre></td></tr></table></figure>
                 
               </div>
             
@@ -402,12 +520,12 @@
     
       <span class="category-chain">
         
-  <a href="/categories/FnOS/" class="category-chain-item">FnOS</a>
+  <a href="/categories/immortalWrt/" class="category-chain-item">immortalWrt</a>
   
   
     <span>></span>
     
-  <a href="/categories/FnOS/%E9%85%8D%E5%88%B6/" class="category-chain-item">配制</a>
+  <a href="/categories/immortalWrt/%E5%AE%89%E8%A3%85%E9%83%A8%E7%BD%B2/" class="category-chain-item">安装部署</a>
   
   
 
@@ -424,7 +542,9 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/AI%E9%9A%8F%E8%AE%B0/" class="print-no-link">#AI随记</a>
+        <a href="/tags/OpenWrt/" class="print-no-link">#OpenWrt</a>
+      
+        <a href="/tags/%E8%BD%AF%E8%B7%AF%E7%94%B1/" class="print-no-link">#软路由</a>
       
     </div>
   
@@ -436,8 +556,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>FnOS添加用户家目录</div>
-      <div>https://blog.carlvictor.cn/posts/c09dbf0c.html</div>
+      <div>immortalwrt-25.12.1-x86-64-generic-squashfs-combined-efi.img扩容</div>
+      <div>https://blog.carlvictor.cn/posts/ee1046fd.html</div>
     </div>
     <div class="license-meta">
       
@@ -481,9 +601,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/posts/ee1046fd.html" title="immortalwrt-25.12.1-x86-64-generic-squashfs-combined-efi.img扩容">
+                      <a href="/posts/cdcef164.html" title="immortalWrt 软路由固件下载方法">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">immortalwrt-25.12.1-x86-64-generic-squashfs-combined-efi.img扩容</span>
+                        <span class="hidden-mobile">immortalWrt 软路由固件下载方法</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -491,8 +611,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/posts/cae1abfe.html" title="懒人SSH配制">
-                        <span class="hidden-mobile">懒人SSH配制</span>
+                      <a href="/posts/c09dbf0c.html" title="FnOS添加用户家目录">
+                        <span class="hidden-mobile">FnOS添加用户家目录</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
