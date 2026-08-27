@@ -1,0 +1,965 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/Logo.jpg">
+  <link rel="icon" href="/img/Logo.jpg">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#A56E62c4">
+  <meta name="author" content="Carl Victor">
+  <meta name="keywords" content="CV, 博客, 学习, 工作, 问题, 解决, 思考, 总结">
+  
+    <meta name="description" content="你想了解 Linux&#x2F;Unix 中高频文本处理命令 awk、tr、sed 的核心作用和基础用法，这三个命令是文本处理的「三剑客」，分工各有侧重：tr 是简单字符替换&#x2F;转换工具（仅单字符级），sed 是流编辑器（侧重行级的查找、替换、增删），awk 是模式扫描与处理语言（侧重字段&#x2F;列级的数据分析、格式化输出，功能最强大）。 下面按「作用定位 + 核心用法 + 经典示例」">
+<meta property="og:type" content="article">
+<meta property="og:title" content="命令awk &#x2F; tr &#x2F; sed 的作用和用法 - AI生成">
+<meta property="og:url" content="https://blog.carlvictor.cn/posts/eee88be2.html">
+<meta property="og:site_name" content="CVblog">
+<meta property="og:description" content="你想了解 Linux&#x2F;Unix 中高频文本处理命令 awk、tr、sed 的核心作用和基础用法，这三个命令是文本处理的「三剑客」，分工各有侧重：tr 是简单字符替换&#x2F;转换工具（仅单字符级），sed 是流编辑器（侧重行级的查找、替换、增删），awk 是模式扫描与处理语言（侧重字段&#x2F;列级的数据分析、格式化输出，功能最强大）。 下面按「作用定位 + 核心用法 + 经典示例」">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2026-08-27T02:55:52.000Z">
+<meta property="article:modified_time" content="2026-08-27T02:56:19.802Z">
+<meta property="article:author" content="Carl Victor">
+<meta property="article:tag" content="AI随记">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>命令awk / tr / sed 的作用和用法 - AI生成 - CVblog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"blog.carlvictor.cn","root":"/","version":"1.9.9","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":["home"]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"bash"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"expand_all":true,"placement":"right","headingSelector":"h1,h2,h3","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"openkounter":{"server_url":"https://open-kounter.mintimate.cn","path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 8.1.2"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>CVblog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content (desktop) -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- Mobile grid menu overlay -->
+<div id="mobile-grid-menu" class="d-lg-none">
+  <div class="mobile-grid-menu-inner">
+    <div class="container">
+      <div class="row">
+        
+          
+          
+          
+          
+            <div class="col-4 mobile-grid-cell">
+              <a href="/archives/" target="_self">
+                <div class="mobile-grid-item">
+                  <i class="iconfont icon-archive-fill"></i>
+                  <span>归档</span>
+                </div>
+              </a>
+            </div>
+          
+        
+          
+          
+          
+          
+            <div class="col-4 mobile-grid-cell">
+              <a href="/categories/" target="_self">
+                <div class="mobile-grid-item">
+                  <i class="iconfont icon-category-fill"></i>
+                  <span>分类</span>
+                </div>
+              </a>
+            </div>
+          
+        
+          
+          
+          
+          
+            <div class="col-4 mobile-grid-cell">
+              <a href="/tags/" target="_self">
+                <div class="mobile-grid-item">
+                  <i class="iconfont icon-tags-fill"></i>
+                  <span>标签</span>
+                </div>
+              </a>
+            </div>
+          
+        
+          
+          
+          
+          
+            <div class="col-4 mobile-grid-cell">
+              <a href="/about/" target="_self">
+                <div class="mobile-grid-item">
+                  <i class="iconfont icon-user-fill"></i>
+                  <span>关于</span>
+                </div>
+              </a>
+            </div>
+          
+        
+        
+          <div class="col-4 mobile-grid-cell" id="mobile-search-btn">
+            <a href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <div class="mobile-grid-item">
+                <i class="iconfont icon-search"></i>
+                <span>搜索</span>
+              </div>
+            </a>
+          </div>
+        
+        
+          <div class="col-4 mobile-grid-cell" id="mobile-color-toggle-btn"
+               data-label-light="开灯"
+               data-label-dark="关灯">
+            <a href="javascript:;" aria-label="Color Toggle">
+              <div class="mobile-grid-item">
+                <i class="iconfont icon-dark" id="mobile-color-toggle-icon"></i>
+                <span id="mobile-color-toggle-label">关灯</span>
+              </div>
+            </a>
+          </div>
+        
+      </div>
+    </div>
+  </div>
+</div>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle">命令awk / tr / sed 的作用和用法 - AI生成</span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2026-08-27 10:55" pubdate>
+          2026年8月27日 上午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          5.2k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          44 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">命令awk / tr / sed 的作用和用法 - AI生成</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <p>你想了解 Linux&#x2F;Unix 中高频文本处理命令 <code>awk</code>、<code>tr</code>、<code>sed</code> 的核心作用和基础用法，这三个命令是文本处理的「三剑客」，分工各有侧重：<code>tr</code> 是<strong>简单字符替换&#x2F;转换工具</strong>（仅单字符级），<code>sed</code> 是<strong>流编辑器</strong>（侧重行级的查找、替换、增删），<code>awk</code> 是<strong>模式扫描与处理语言</strong>（侧重字段&#x2F;列级的数据分析、格式化输出，功能最强大）。</p>
+<p>下面按「作用定位 + 核心用法 + 经典示例」的结构讲解，示例基于 Linux 环境（CentOS&#x2F;Ubuntu 通用），所有示例均可直接在终端执行。</p>
+<h3 id="一、tr-命令：字符级的替换-删除-压缩（最简单，仅处理单个字符）"><a href="#一、tr-命令：字符级的替换-删除-压缩（最简单，仅处理单个字符）" class="headerlink" title="一、tr 命令：字符级的替换&#x2F;删除&#x2F;压缩（最简单，仅处理单个字符）"></a>一、tr 命令：字符级的替换&#x2F;删除&#x2F;压缩（最简单，仅处理单个字符）</h3><h4 id="核心作用"><a href="#核心作用" class="headerlink" title="核心作用"></a>核心作用</h4><p>专门处理<strong>单个字符</strong>的转换、替换、删除、去重，仅能按字符匹配（不支持正则、不支持多字符&#x2F;字符串替换），适合简单的字符级操作（如大小写转换、删特殊符号、替换分隔符）。</p>
+<h4 id="核心语法"><a href="#核心语法" class="headerlink" title="核心语法"></a>核心语法</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">tr</span> [选项] 字符集1 字符集2  <span class="hljs-comment"># 字符集1→字符集2 替换</span><br><span class="hljs-built_in">tr</span> [选项] 字符集          <span class="hljs-comment"># 删除/压缩字符集内的字符</span><br></code></pre></td></tr></table></figure>
+<h4 id="关键选项"><a href="#关键选项" class="headerlink" title="关键选项"></a>关键选项</h4><ul>
+<li><code>-d</code>：删除字符集内的所有字符（最常用）；</li>
+<li><code>-s</code>：压缩连续重复的字符为单个（去重）；</li>
+<li><code>-t</code>：截断字符集2，使其长度与字符集1一致（避免字符集2过长导致的匹配异常，部分系统默认开启）。</li>
+</ul>
+<h4 id="经典示例"><a href="#经典示例" class="headerlink" title="经典示例"></a>经典示例</h4><ol>
+<li>大小写转换（字符集 <code>a-z</code> 对应 <code>A-Z</code>）</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;hello world&quot;</span> | <span class="hljs-built_in">tr</span> a-z A-Z  <span class="hljs-comment"># 输出：HELLO WORLD</span><br><span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;HELLO&quot;</span> | <span class="hljs-built_in">tr</span> A-Z a-z        <span class="hljs-comment"># 输出：hello</span><br></code></pre></td></tr></table></figure>
+<ol start="2">
+<li>删除指定字符（如删数字、标点）</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;abc123def!@#&quot;</span> | <span class="hljs-built_in">tr</span> -d 0-9  <span class="hljs-comment"># 删数字，输出：abcdef!@#</span><br><span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;test,123;ok&quot;</span> | <span class="hljs-built_in">tr</span> -d <span class="hljs-string">&#x27;,;&#x27;</span>  <span class="hljs-comment"># 删标点，输出：test123ok</span><br></code></pre></td></tr></table></figure>
+<ol start="3">
+<li>压缩连续重复字符（如去多余空格、换行）</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;hello   world  !!  &quot;</span> | <span class="hljs-built_in">tr</span> -s <span class="hljs-string">&#x27; !&#x27;</span>  <span class="hljs-comment"># 压缩空格和!，输出：hello world !</span><br><span class="hljs-built_in">cat</span> file.txt | <span class="hljs-built_in">tr</span> -s <span class="hljs-string">&#x27;\n&#x27;</span>  <span class="hljs-comment"># 压缩文件中的连续空行为单个空行</span><br></code></pre></td></tr></table></figure>
+<ol start="4">
+<li>替换单个分隔符（如把逗号换为空格）</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;1,2,3,4&quot;</span> | <span class="hljs-built_in">tr</span> <span class="hljs-string">&#x27;,&#x27;</span> <span class="hljs-string">&#x27; &#x27;</span>  <span class="hljs-comment"># 输出：1 2 3 4</span><br></code></pre></td></tr></table></figure>
+
+<h3 id="二、sed-命令：流编辑器（行级文本处理，支持正则）"><a href="#二、sed-命令：流编辑器（行级文本处理，支持正则）" class="headerlink" title="二、sed 命令：流编辑器（行级文本处理，支持正则）"></a>二、sed 命令：流编辑器（行级文本处理，支持正则）</h3><h4 id="核心作用-1"><a href="#核心作用-1" class="headerlink" title="核心作用"></a>核心作用</h4><p>以<strong>行为单位</strong>处理文本，支持<strong>查找、替换、插入、删除、行编辑</strong>，可结合正则表达式，适合批量修改文本、过滤行内容（不修改原文件，仅输出处理结果，除非加写入选项）。</p>
+<h4 id="核心语法-1"><a href="#核心语法-1" class="headerlink" title="核心语法"></a>核心语法</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">sed [选项] <span class="hljs-string">&#x27;编辑指令&#x27;</span> 文件名  <span class="hljs-comment"># 处理文件</span><br><span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;文本&quot;</span> | sed [选项] <span class="hljs-string">&#x27;编辑指令&#x27;</span>  <span class="hljs-comment"># 处理管道输入</span><br></code></pre></td></tr></table></figure>
+<h4 id="关键选项-1"><a href="#关键选项-1" class="headerlink" title="关键选项"></a>关键选项</h4><ul>
+<li><code>-n</code>：<strong>静默模式</strong>，仅输出被编辑指令匹配的行（默认输出所有行，包括未处理的）；</li>
+<li><code>-i</code>：<strong>原地修改原文件</strong>（最常用，Linux 下直接用 <code>-i</code>，Mac 下需用 <code>-i &#39;&#39;</code>）；</li>
+<li><code>-e</code>：执行多个编辑指令（多条件处理）；</li>
+<li><code>-r</code>&#x2F;<code>-E</code>：支持<strong>扩展正则表达式</strong>（默认是基础正则，需转义 <code>+|()</code> 等，加 <code>-E</code> 可省略转义）。</li>
+</ul>
+<h4 id="核心编辑指令（行级操作，格式：地址范围-操作）"><a href="#核心编辑指令（行级操作，格式：地址范围-操作）" class="headerlink" title="核心编辑指令（行级操作，格式：地址范围 操作）"></a>核心编辑指令（行级操作，格式：<code>地址范围 操作</code>）</h4><p>地址范围可省略（匹配所有行），常用：<code>n</code>（第n行）、<code>n,m</code>（n到m行）、<code>/正则/</code>（匹配正则的行）；<br>常用操作：</p>
+<ul>
+<li><code>s/原字符串/新字符串/标记</code>：<strong>替换</strong>（最核心，<code>s</code>&#x3D;substitute）；</li>
+<li><code>d</code>：删除匹配行；</li>
+<li><code>a 文本</code>：在匹配行<strong>下方插入</strong>文本；</li>
+<li><code>i 文本</code>：在匹配行<strong>上方插入</strong>文本；</li>
+<li><code>p</code>：打印匹配行（常与 <code>-n</code> 配合）。</li>
+</ul>
+<h4 id="替换指令的关键标记"><a href="#替换指令的关键标记" class="headerlink" title="替换指令的关键标记"></a>替换指令的关键标记</h4><ul>
+<li><code>g</code>：<strong>全局替换</strong>（一行内匹配到的所有结果都替换，默认仅替换第一个）；</li>
+<li><code>数字</code>：替换一行内第n个匹配结果；</li>
+<li><code>p</code>：打印替换后的行（常与 <code>-n</code> 配合）。</li>
+</ul>
+<h4 id="经典示例-1"><a href="#经典示例-1" class="headerlink" title="经典示例"></a>经典示例</h4><p><strong>准备测试文本</strong>：新建 <code>test.txt</code>，内容如下</p>
+<figure class="highlight subunit"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs subunit">hello world<br><span class="hljs-keyword">test </span>123 test 456<br>linux is good<br>hello linux<br></code></pre></td></tr></table></figure>
+<ol>
+<li>基础替换（仅替换每行第一个匹配项）</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">sed <span class="hljs-string">&#x27;s/test/TEST/&#x27;</span> test.txt  <span class="hljs-comment"># 每行第一个test→TEST，输出处理结果（原文件不变）</span><br></code></pre></td></tr></table></figure>
+<p>输出：</p>
+<figure class="highlight subunit"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs subunit">hello world<br><span class="hljs-keyword">TEST </span>123 test 456<br>linux is good<br>hello linux<br></code></pre></td></tr></table></figure>
+<ol start="2">
+<li>全局替换（一行内所有匹配项）+ 原地修改原文件</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">sed -i <span class="hljs-string">&#x27;s/test/TEST/g&#x27;</span> test.txt  <span class="hljs-comment"># 所有test→TEST，直接修改原文件</span><br></code></pre></td></tr></table></figure>
+<ol start="3">
+<li>按正则匹配行，再替换（如匹配含hello的行，替换world为Linux）</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">sed <span class="hljs-string">&#x27;s/hello world/hello Linux/&#x27;</span> test.txt  <span class="hljs-comment"># 精准匹配</span><br>sed <span class="hljs-string">&#x27;/hello/ s/world/Linux/g&#x27;</span> test.txt     <span class="hljs-comment"># 先匹配含hello的行，再替换行内的world</span><br></code></pre></td></tr></table></figure>
+<ol start="4">
+<li>删除行（如删空行、删指定行、删匹配正则的行）</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs bash">sed <span class="hljs-string">&#x27;/^$/d&#x27;</span> test.txt  <span class="hljs-comment"># 删除空行（^$ 是正则，匹配空行）</span><br>sed <span class="hljs-string">&#x27;2d&#x27;</span> test.txt     <span class="hljs-comment"># 删除第2行</span><br>sed <span class="hljs-string">&#x27;1,3d&#x27;</span> test.txt   <span class="hljs-comment"># 删除1-3行</span><br>sed <span class="hljs-string">&#x27;/linux/d&#x27;</span> test.txt <span class="hljs-comment"># 删除含linux的行</span><br></code></pre></td></tr></table></figure>
+<ol start="5">
+<li>静默模式+打印（仅输出匹配的行）</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">sed -n <span class="hljs-string">&#x27;/hello/p&#x27;</span> test.txt  <span class="hljs-comment"># 仅打印含hello的行，输出：hello world / hello linux</span><br></code></pre></td></tr></table></figure>
+<ol start="6">
+<li>多指令处理（加 <code>-e</code>，如删空行+全局替换）</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">sed -e <span class="hljs-string">&#x27;/^$/d&#x27;</span> -e <span class="hljs-string">&#x27;s/linux/LINUX/g&#x27;</span> test.txt<br></code></pre></td></tr></table></figure>
+<ol start="7">
+<li>插入文本（a&#x3D;下插，i&#x3D;上插）</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">sed <span class="hljs-string">&#x27;3a ====分隔符====&#x27;</span> test.txt  <span class="hljs-comment"># 在第3行下方插入分隔符</span><br>sed <span class="hljs-string">&#x27;/linux/i hello awk&#x27;</span> test.txt <span class="hljs-comment"># 在含linux的行上方插入hello awk</span><br></code></pre></td></tr></table></figure>
+
+<h3 id="三、awk-命令：模式扫描与处理语言（字段级，全能文本分析）"><a href="#三、awk-命令：模式扫描与处理语言（字段级，全能文本分析）" class="headerlink" title="三、awk 命令：模式扫描与处理语言（字段级，全能文本分析）"></a>三、awk 命令：模式扫描与处理语言（字段级，全能文本分析）</h3><h4 id="核心作用-2"><a href="#核心作用-2" class="headerlink" title="核心作用"></a>核心作用</h4><p><code>awk</code> 不是简单命令，而是<strong>轻量级编程语言</strong>，核心以<strong>字段（列）</strong> 为单位处理文本，支持<strong>字段分割、条件判断、循环、数学运算、格式化输出</strong>，适合：</p>
+<ul>
+<li>表格&#x2F;结构化文本的列提取、列计算（如日志、CSV、ps&#x2F;df命令的输出）；</li>
+<li>按条件过滤行+列的组合处理；</li>
+<li>统计分析（如求和、求平均值、去重计数）。</li>
+</ul>
+<h4 id="核心原理"><a href="#核心原理" class="headerlink" title="核心原理"></a>核心原理</h4><p><code>awk</code> 会<strong>逐行读取文本</strong>，默认以<strong>空格&#x2F;制表符</strong>为分隔符，将每行分割为多个<strong>字段</strong>，用 <code>$n</code> 表示第n个字段（<code>$1</code>&#x3D;第一列，<code>$2</code>&#x3D;第二列，…），<code>$0</code> 表示<strong>整行内容</strong>；<br>内置变量会自动赋值（无需定义），是awk的核心。</p>
+<h4 id="核心语法-2"><a href="#核心语法-2" class="headerlink" title="核心语法"></a>核心语法</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">awk [选项] <span class="hljs-string">&#x27;条件&#123;处理动作&#125;&#x27;</span> 文件名  <span class="hljs-comment"># 处理文件</span><br>命令 | awk [选项] <span class="hljs-string">&#x27;条件&#123;处理动作&#125;&#x27;</span>   <span class="hljs-comment"># 处理管道输出（最常用，如分析ps/df的输出）</span><br></code></pre></td></tr></table></figure>
+<h4 id="关键选项-2"><a href="#关键选项-2" class="headerlink" title="关键选项"></a>关键选项</h4><ul>
+<li><code>-F 分隔符</code>：指定<strong>字段分隔符</strong>（默认空格&#x2F;制表符，可指定为逗号、冒号等，如 <code>-F &#39;,&#39;</code>、<code>-F &#39;:&#39;</code>）；</li>
+<li><code>-v 变量=值</code>：定义自定义变量（传递外部值到awk内部）。</li>
+</ul>
+<h4 id="核心内置变量（必记）"><a href="#核心内置变量（必记）" class="headerlink" title="核心内置变量（必记）"></a>核心内置变量（必记）</h4><table>
+<thead>
+<tr>
+<th>变量</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>$0</code></td>
+<td>整行内容</td>
+</tr>
+<tr>
+<td><code>$1~$n</code></td>
+<td>第1~n个字段（列）</td>
+</tr>
+<tr>
+<td><code>NF</code></td>
+<td>每行的<strong>字段总数</strong>（列数，如NF&#x3D;3表示每行3列）</td>
+</tr>
+<tr>
+<td><code>NR</code></td>
+<td>已读取的<strong>行号</strong>（全局行号，多文件时连续计数）</td>
+</tr>
+<tr>
+<td><code>FNR</code></td>
+<td>当前文件的<strong>行号</strong>（多文件时，每个文件重新计数）</td>
+</tr>
+<tr>
+<td><code>FS</code></td>
+<td>输入字段分隔符（等价于 <code>-F</code> 选项）</td>
+</tr>
+<tr>
+<td><code>OFS</code></td>
+<td>输出字段分隔符（默认空格，可自定义）</td>
+</tr>
+</tbody></table>
+<h4 id="核心语法规则"><a href="#核心语法规则" class="headerlink" title="核心语法规则"></a>核心语法规则</h4><ol>
+<li>条件可省略：表示匹配所有行，执行处理动作；</li>
+<li>处理动作必须用 <code>{}</code> 包裹，多个动作用<strong>分号;</strong> 分隔；</li>
+<li>支持<strong>条件判断</strong>：<code>==</code>&#x2F;<code>!=</code>（等于&#x2F;不等于）、<code>&gt;</code>&#x2F;<code>&lt;</code>（大于&#x2F;小于）、<code>~</code>&#x2F;<code>!~</code>（匹配&#x2F;不匹配正则）；</li>
+<li>支持<strong>格式化输出</strong>：<code>print</code>（简单输出）、<code>printf</code>（精准格式化，如指定列宽、小数位数，与C语言printf一致）；</li>
+<li>支持<strong>BEGIN&#x2F;END块</strong>：<code>BEGIN{}</code> 处理文本<strong>前</strong>执行（仅1次，如初始化变量、打印表头）；<code>END{}</code> 处理文本<strong>后</strong>执行（仅1次，如统计结果输出）。</li>
+</ol>
+<h4 id="经典示例-2"><a href="#经典示例-2" class="headerlink" title="经典示例"></a>经典示例</h4><p><strong>示例1：基础列提取（处理系统命令输出，最常用）</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">df</span> -h | awk <span class="hljs-string">&#x27;&#123;print $1,$5,$6&#125;&#x27;</span>  <span class="hljs-comment"># 提取df -h的第1、5、6列（磁盘名、使用率、挂载点）</span><br>ps -ef | awk <span class="hljs-string">&#x27;/java/ &#123;print $2,$8&#125;&#x27;</span>  <span class="hljs-comment"># 过滤含java的行，提取进程号($2)和进程名($8)</span><br></code></pre></td></tr></table></figure>
+<p><strong>示例2：指定分隔符（处理CSV&#x2F;冒号分隔的文本）</strong></p>
+<ul>
+<li>处理 <code>/etc/passwd</code>（冒号<code>:</code>分隔，提取用户名$1和登录shell$7）：</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">awk -F <span class="hljs-string">&#x27;:&#x27;</span> <span class="hljs-string">&#x27;&#123;print $1,&quot;→&quot;,$7&#125;&#x27;</span> /etc/passwd  <span class="hljs-comment"># 输出：root → /bin/bash  等</span><br></code></pre></td></tr></table></figure>
+<ul>
+<li>处理逗号分隔的文本：</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;1,zhangsan,20;2,lisi,25&quot;</span> | <span class="hljs-built_in">tr</span> <span class="hljs-string">&#x27;;&#x27;</span> <span class="hljs-string">&#x27;\n&#x27;</span> | awk -F <span class="hljs-string">&#x27;,&#x27;</span> <span class="hljs-string">&#x27;&#123;print $2,$3&#125;&#x27;</span><br></code></pre></td></tr></table></figure>
+<p><strong>示例3：条件过滤（按行&#x2F;列条件筛选）</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment"># 提取df -h中使用率&gt;80%的磁盘（$5是使用率，需去掉%，用gsub删字符）</span><br><span class="hljs-built_in">df</span> -h | awk <span class="hljs-string">&#x27;gsub(/%/,&quot;&quot;,$5) &amp;&amp; $5&gt;80 &#123;print $1,$5&quot;%&quot;&#125;&#x27;</span><br><span class="hljs-comment"># 过滤test.txt中第2列是数字的行</span><br>awk <span class="hljs-string">&#x27;$2 ~ /^[0-9]+$/ &#123;print $0&#125;&#x27;</span> test.txt<br></code></pre></td></tr></table></figure>
+<p><strong>示例4：统计分析（求和、计数，结合BEGIN&#x2F;END）</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment"># 生成测试数据：3行，第2列是数字</span><br><span class="hljs-built_in">echo</span> -e <span class="hljs-string">&quot;a 10\nb 20\nc 30&quot;</span> &gt; num.txt<br><span class="hljs-comment"># 求和第2列，计数行数，求平均值</span><br>awk <span class="hljs-string">&#x27;BEGIN&#123;sum=0;count=0&#125; &#123;sum+=$2;count++&#125; END&#123;print &quot;总行数：&quot;count,&quot;总和：&quot;sum,&quot;平均值：&quot;sum/count&#125;&#x27;</span> num.txt<br></code></pre></td></tr></table></figure>
+<p>输出：<code>总行数：3 总和：60 平均值：20</code><br><strong>示例5：格式化输出（printf，指定列宽、对齐）</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">awk -F <span class="hljs-string">&#x27;:&#x27;</span> <span class="hljs-string">&#x27;&#123;printf &quot;%-10s %-20s\n&quot;, $1, $7&#125;&#x27;</span> /etc/passwd<br></code></pre></td></tr></table></figure>
+<ul>
+<li><code>%-10s</code>：左对齐，占10个字符宽度；<code>%s</code> 表示字符串，<code>%d</code> 表示数字，<code>%f</code> 表示浮点数。<br><strong>示例6：修改输出分隔符（OFS）</strong></li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment"># 提取/etc/passwd的$1和$7，用【|】分隔输出</span><br>awk -F <span class="hljs-string">&#x27;:&#x27;</span> <span class="hljs-string">&#x27;OFS=&quot;|&quot;) &#123;print $1,$7&#125;&#x27;</span> /etc/passwd<br></code></pre></td></tr></table></figure>
+
+<h3 id="四、三个命令的核心区别（快速选型）"><a href="#四、三个命令的核心区别（快速选型）" class="headerlink" title="四、三个命令的核心区别（快速选型）"></a>四、三个命令的核心区别（快速选型）</h3><table>
+<thead>
+<tr>
+<th>命令</th>
+<th>处理粒度</th>
+<th>核心优势</th>
+<th>适用场景</th>
+<th>正则支持</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>tr</td>
+<td>单个字符</td>
+<td>简单高效，轻量</td>
+<td>大小写转换、删&#x2F;压缩字符、单字符替换</td>
+<td>不支持</td>
+</tr>
+<tr>
+<td>sed</td>
+<td>整行</td>
+<td>行级增删改查，批量编辑</td>
+<td>文本替换、删空行、行插入、批量修改文件</td>
+<td>支持（基础&#x2F;扩展）</td>
+</tr>
+<tr>
+<td>awk</td>
+<td>字段&#x2F;列</td>
+<td>列提取、条件统计、数学运算</td>
+<td>结构化文本分析、列过滤、求和计数、命令输出分析</td>
+<td>支持（基础&#x2F;扩展）</td>
+</tr>
+</tbody></table>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><ol>
+<li>简单字符操作（换大小写、删符号、单字符替换）→ 用 <code>tr</code>，最快最轻便；</li>
+<li>行级的查找替换、增删行、批量修改文件 → 用 <code>sed</code>，结合正则做行编辑；</li>
+<li>列级的提取、过滤、统计、计算，或处理结构化文本&#x2F;命令输出 → 用 <code>awk</code>，功能最全面（堪称轻量文本分析语言）；</li>
+<li>实际使用中常<strong>组合搭配</strong>（如 <code>tr</code> 先做字符转换，再用 <code>sed</code> 行处理，最后用 <code>awk</code> 列统计），比如 <code>cat file | tr -d &#39; &#39; | sed &#39;/^$/d&#39; | awk -F &#39;,&#39; &#39;{print $1}&#39;</code>。</li>
+</ol>
+<p>这三个命令的核心是<strong>文本处理的粒度差异</strong>，记住「字符→tr，行→sed，列→awk」，就能快速选对工具，后续结合正则和管道，能处理Linux下90%以上的文本场景。</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E9%9A%8F%E8%AE%B0/" class="category-chain-item">随记</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/AI%E9%9A%8F%E8%AE%B0/" class="print-no-link">#AI随记</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>命令awk / tr / sed 的作用和用法 - AI生成</div>
+      <div>https://blog.carlvictor.cn/posts/eee88be2.html</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Carl Victor</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2026年8月27日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/posts/b3fd1c48.html" title="CSS选择器的用法 - AI生成">
+                        <span class="hidden-mobile">CSS选择器的用法 - AI生成</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://fluid.ist/" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    function isExpandAllEnabled() {
+      return CONFIG.toc && CONFIG.toc.expand_all === true;
+    }
+    function expandAllToc() {
+      if (!isExpandAllEnabled()) { return; }
+      jQuery('#toc-body .tocbot-is-collapsed').removeClass('tocbot-is-collapsed');
+    }
+    function updateTocToggle($li, $childList) {
+      var $toggle = $li.children('.toc-toggle');
+      if ($toggle.length === 0) { return; }
+      var collapsed = $childList.hasClass('tocbot-is-collapsed');
+      $toggle
+        .toggleClass('toc-toggle-collapsed', collapsed)
+        .toggleClass('toc-toggle-expanded', !collapsed);
+    }
+    function bindTocToggle() {
+      if (!isExpandAllEnabled()) { return; }
+      jQuery('#toc-body .toc-list-item').each(function() {
+        var $li = jQuery(this);
+        var $childList = $li.children('ol');
+        if ($childList.length === 0) {
+          if ($li.children('.toc-toggle').length === 0) {
+            $li.prepend('<span class="toc-toggle toc-toggle-placeholder" aria-hidden="true">›</span>');
+          }
+          return;
+        }
+
+        if ($li.children('.toc-toggle').length === 0) {
+          $li.prepend('<span class="toc-toggle toc-toggle-expanded" aria-hidden="true">›</span>');
+        }
+        updateTocToggle($li, $childList);
+      });
+      jQuery('#toc-body').off('click.tocToggle').on('click.tocToggle', '.toc-toggle', function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        var $li = jQuery(this).parent('.toc-list-item');
+        var $childList = $li.children('ol');
+        if ($childList.length === 0) { return; }
+        $childList.toggleClass('tocbot-is-collapsed');
+        updateTocToggle($li, $childList);
+      });
+      if (!window.__tocToggleObserver) {
+        window.__tocToggleObserver = new MutationObserver(function(mutations) {
+          mutations.forEach(function(mutation) {
+            if (mutation.type !== 'attributes' || mutation.attributeName !== 'class') { return; }
+            var $list = jQuery(mutation.target);
+            var $li = $list.parent('.toc-list-item');
+            if ($li.length === 0) { return; }
+            updateTocToggle($li, $list);
+          });
+        });
+        jQuery('#toc-body ol').each(function() {
+          window.__tocToggleObserver.observe(this, { attributes: true });
+        });
+      }
+    }
+    var tocConfig = Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc);
+    if (isExpandAllEnabled()) {
+      tocConfig.collapseDepth = 6;
+    }
+    window.tocbot.init(tocConfig);
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+    expandAllToc();
+    bindTocToggle();
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+        expandAllToc();
+        bindTocToggle();
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
